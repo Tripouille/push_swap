@@ -14,7 +14,8 @@ int main(void)
     list_push(&a, 5);
     list_push(&a, 6);
     list_push(&a, 7);
-
+    if (list_contain(&a, 7))
+        printf("yep\n");
     while (list_size(&a) > 0)
     {
         printf("list size = %lu\n", list_size(&a));
@@ -24,5 +25,9 @@ int main(void)
         list_shift(&a);
     }
     list_destroy(&a);
+    if (list_contain(&a, 1))
+        printf("yep\n");
+    else
+        printf("pas yep\n");
     return (0);
 }
