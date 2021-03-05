@@ -1,37 +1,67 @@
 #include "list.h"
 
-t_list_element	*create_list_element(void *data, t_list_element *prev,
-									t_list_element *next)
+t_list_element			*list_push(t_list *list, int value)
 {
-	t_list_element	*new_list_element;
+	t_list_element	*injected_element;
 
-	new_list_element = malloc(sizeof(*new_list_element));
-	if (new_list_element == NULL)
+	injected_element = list_inject(list, value);
+	if (injected_element == NULL)
 		return (NULL);
-	new_list_element->data = data;
-	new_list_element->prev = prev;
-	new_list_element->next = next;
-	return (new_list_element);
+	list->tail = injected_element;
+	return (injected_element);
 }
 
-t_list_element	*list_push(t_list *list, void *data)
+int						list_pop(t_list *list)
 {
-	t_list_element	*new_list_element;
+	t_list_element	*element_to_destroy;
+	int				return_value;
 
-	new_list_element = create_list_element(data, NULL, NULL);
-	if (new_list_element == NULL)
-		return (NULL);
-	if (list->head == NULL)
+	element_to_destroy = list->tail;
+	if (list->head == list->tail)
 	{
-		list->head = new_list_element;
-		list->tail = new_list_element;
+		list->head = NULL;
+		list->tail = NULL;
 	}
 	else
 	{
-		new_list_element->prev = list->tail;
-		list->tail->next = new_list_element;
-		new_list_element->next = list->head;
-		list->head->prev = new_list_element;
+		list->tail->prev->next = list->tail->next;
+		list->tail->next->prev = list->tail->prev;
+		list->tail = list->tail->prev;
 	}
-	return (new_list_element);
+	return_value = element_to_destroy->value;
+	free(element_to_destroy);
+	return (return_value);
+}
+
+t_list_element			*list_unshift(t_list *list, int value)
+{
+	t_list_element	*injected_element;
+
+	injected_element = list_inject(list, value);
+	if (injected_element == NULL)
+		return (NULL);
+	list->head = injected_element;
+	return (injected_element);
+}
+
+int						list_shift(t_list *list)
+{
+	t_list_element	*element_to_destroy;
+	int				return_value;
+
+	element_to_destroy = list->head;
+	if (list->head == list->tail)
+	{
+		list->head = NULL;
+		list->tail = NULL;
+	}
+	else
+	{
+		list->head->next->prev = list->head->prev;
+		list->head->prev->next = list->head->next;
+		list->head = list->head->next;
+	}
+	return_value = element_to_destroy->value;
+	free(element_to_destroy);
+	return (return_value);
 }
