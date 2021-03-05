@@ -3,7 +3,8 @@
 
 int main(void)
 {
-    t_list a; a.head = NULL; a.tail = NULL;
+    t_list a;
+    list_initialize(&a);
     list_show(a, false);
 
     list_push(&a, 1);

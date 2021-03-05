@@ -26,6 +26,7 @@ size_t                  list_size(t_list *list);
 void                    list_destroy(t_list *list);
 void                    list_show(t_list list, bool reverse);
 
+void					list_initialize(t_list *list);
 t_list_element          *list_push(t_list *list, int data);
 int 					list_pop(t_list *list);
 t_list_element			*list_unshift(t_list *list, int data);
