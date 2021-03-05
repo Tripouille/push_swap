@@ -6,37 +6,41 @@ int	error(void)
 	return (-1);
 }
 
-bool	is_valid_number(const char *s)
+bool	set_number(const char *s, long *nb)
 {
-	int	i;
+	int		i;
+	bool	isNegative;
 
-	if (ft_strcmp(s, "-2147483648") == 0)
-		return (true);
+	isNegative = false;
 	if (s[0] == '-')
+	{
+		isNegative = true;
 		++s;
-	if (*s == 0)
+	}
+	if (s[0] == 0)
 		return (false);
-	if (ft_strlen(s) > 10)
-		return (false);
+	*nb = 0;
 	i = -1;
-	while (s[++i])
-		if (!ft_isdigit(s[i]))
-			return (false);
-	return (ft_strlen(s) < 9 || ft_strcmp(s, "2147483647") <= 0);
+	while (ft_isdigit(s[++i]) && -*nb >= INT_MIN)
+		*nb = *nb * 10 + s[i] - '0';
+	if (isNegative)
+		*nb = -*nb;
+	if (s[i] || *nb > INT_MAX || *nb < INT_MIN)
+		return (false);
+	return (true);
 }
 
 bool	get_numbers(char **args)
 {
 	int		i;
-	int		nb;
+	long	nb;
 
 	i = 0;
 	while (args[++i] != NULL)
 	{
-		if (!is_valid_number(args[i]))
+		if (!set_number(args[i], &nb))
 			return (false);
-		nb = ft_atoi(args[i]);
-		printf("%d\n", nb);
+		printf("%ld\n", nb);
 	}
 	return (true);
 }
