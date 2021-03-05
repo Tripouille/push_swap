@@ -22,22 +22,22 @@ all: $(CHECKER_EXECUTABLE) $(PUSH_SWAP_EXECUTABLE)
 
 $(CHECKER_EXECUTABLE): $(CHECKER_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
-	@echo "\\033[0;32m$@ done."
+	@tput setaf 2 && echo "$@ done."
 
 $(PUSH_SWAP_EXECUTABLE): $(PUSH_SWAP_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
-	@echo "\\033[0;32m$@ done."
+	@tput setaf 2 && echo "$@ done."
 
 $(CHECKER_OBJS): $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(CHECKER_HEADERS)
-	@echo -n "\\033[0;96m"
+	@tput setaf 4
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(PUSH_SWAP_OBJS): $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(PUSH_SWAP_HEADERS)
-	@echo -n "\\033[0;96m"
+	@tput setaf 4
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo -n "\\033[0;31m"
+	@tput setaf 1
 	$(RM) $(CHECKER_OBJS) $(PUSH_SWAP_OBJS)
 
 fclean: clean
