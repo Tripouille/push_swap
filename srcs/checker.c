@@ -6,10 +6,23 @@ int	error(void)
 	return (-1);
 }
 
-bool	is_valid_number(char *s)
+bool	is_valid_number(const char *s)
 {
-	(void)s;
-	return (true);
+	int	i;
+
+	if (ft_strcmp(s, "-2147483648") == 0)
+		return (true);
+	if (s[0] == '-')
+		++s;
+	if (*s == 0)
+		return (false);
+	if (ft_strlen(s) > 10)
+		return (false);
+	i = -1;
+	while (s[++i])
+		if (!ft_isdigit(s[i]))
+			return (false);
+	return (ft_strlen(s) < 9 || ft_strcmp(s, "2147483647") <= 0);
 }
 
 bool	get_numbers(char **args)

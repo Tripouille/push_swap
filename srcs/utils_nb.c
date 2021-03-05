@@ -1,4 +1,11 @@
-int	ft_atoi(char const *s)
+#include "checker.h"
+
+bool	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_atoi(char const *s) //a faire
 {
 	unsigned long long	res;
 	int					i;
