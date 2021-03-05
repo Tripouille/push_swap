@@ -2,7 +2,7 @@
 
 int	error(void)
 {
-	printf("Error\n");
+	write(2, "Error\n", 6);
 	return (-1);
 }
 
@@ -30,7 +30,7 @@ bool	set_number(const char *s, long *nb)
 	return (true);
 }
 
-bool	get_numbers(char **args)
+bool	get_numbers(char **args, t_list *a)
 {
 	int		i;
 	long	nb;
@@ -38,17 +38,32 @@ bool	get_numbers(char **args)
 	i = 0;
 	while (args[++i] != NULL)
 	{
-		if (!set_number(args[i], &nb))
+		if (!set_number(args[i], &nb) || list_contain(a, nb))
+		{
+			list_destroy(a);
 			return (false);
-		printf("%ld\n", nb);
+		}
+		list_push(a, nb);
 	}
+	list_show(*a, false);
 	return (true);
+}
+
+bool	check(void)
+{
+	return (false);
 }
 
 int	main(int argc, char **argv)
 {
+	t_list	a;
+	t_list	b;
+
 	(void)argc;
-	if (get_numbers(argv) == false)
+	list_initialize(&a);
+	list_initialize(&b);
+	if (get_numbers(argv, &a) == false)
 		return (error());
+	list_destroy(&a);
 	return (0);
 }
