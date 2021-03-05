@@ -1,4 +1,4 @@
-int	ft_strlen(char *s)
+int	ft_strlen(char const *s)
 {
 	int	len;
 

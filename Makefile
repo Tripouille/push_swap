@@ -10,7 +10,7 @@ PUSH_SWAP_OBJS = $(PUSH_SWAP_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CHECKER_EXECUTABLE = checker
 CHECKER_HEADERS = $(addprefix $(HEADERS_DIR)/, checker.h)
-CHECKER_SRCS = $(addprefix $(SRCS_DIR)/, checker.c utils_str.c)
+CHECKER_SRCS = $(addprefix $(SRCS_DIR)/, checker.c utils_str.c utils_nb.c)
 CHECKER_OBJS = $(CHECKER_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CC = gcc

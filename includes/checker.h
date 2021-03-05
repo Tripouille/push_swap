@@ -1,8 +1,10 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include <unistd.h>
+# include <stdio.h>
+# include <stdbool.h>
 
-int		ft_strlen(char *s);
+int		ft_strlen(char const *s);
+int		ft_atoi(char const *s);
 
 #endif
