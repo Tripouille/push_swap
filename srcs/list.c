@@ -1,5 +1,11 @@
 #include "list.h"
 
+void					list_initialize(t_list *list)
+{
+	list->head = NULL;
+	list->tail = NULL;
+}
+
 t_list_element			*list_push(t_list *list, int value)
 {
 	t_list_element	*injected_element;
