@@ -22,9 +22,7 @@ typedef struct s_list
 t_list_element			*create_list_element(int value, t_list_element *prev,
 									t_list_element *next);
 t_list_element          *list_inject(t_list *list, int value);
-size_t                  list_size(t_list *list);
 void                    list_destroy(t_list *list);
-void                    list_show(t_list list, bool reverse);
 
 void					list_initialize(t_list *list);
 t_list_element          *list_push(t_list *list, int data);
@@ -36,4 +34,7 @@ void					list_swap(t_list * list);
 void					list_rotate(t_list *list);
 void					list_reverse_rotate(t_list *list);
 
+bool					list_contain(t_list *list, int needle);
+size_t                  list_size(t_list *list);
+void                    list_show(t_list list, bool reverse);
 #endif
