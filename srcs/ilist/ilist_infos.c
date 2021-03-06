@@ -61,6 +61,11 @@ size_t					ilist_size(t_ilist *ilist)
 	return (size);
 }
 
+bool                    ilist_is_empty(t_ilist *ilist)
+{
+    return (ilist->head == NULL);
+}
+
 void					ilist_show(t_ilist ilist, bool reverse)
 {
     t_ilist_element *element;

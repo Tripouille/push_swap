@@ -8,5 +8,6 @@
 # include "utils.h"
 # include "ilist.h"
 # include "slist.h"
+# include "instructions.h"
 
 #endif

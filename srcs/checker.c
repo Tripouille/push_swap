@@ -41,7 +41,7 @@ void	execute(t_slist *instructionNames, t_instruction_infos instructions[], t_il
 
 void	printResult(t_ilist *a, t_ilist *b)
 {
-	if (ilist_size(b) == 0 && ilist_is_sort(a, false))
+	if (ilist_is_empty(b) && ilist_is_sort(a, false))
 		printf("OK\n");
 	else
 		printf("KO\n");
