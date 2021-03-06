@@ -29,10 +29,12 @@ all: $(CHECKER_EXECUTABLE) $(PUSH_SWAP_EXECUTABLE)
 $(CHECKER_EXECUTABLE): $(CHECKER_OBJS) $(UTILS_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 	@tput setaf 2 && echo "$@ done."
+	@tput init
 
 $(PUSH_SWAP_EXECUTABLE): $(PUSH_SWAP_OBJS) $(UTILS_OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 	@tput setaf 2 && echo "$@ done."
+	@tput init
 
 $(CHECKER_OBJS): $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(CHECKER_HEADERS)
 	@tput setaf 4
