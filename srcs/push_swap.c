@@ -10,6 +10,6 @@ int main(void)
     int i = -1;
     while (instructions[++i].name[0])
         printf("%s\n", instructions[i].name);
-    printf("contain = %i", instructions_contain(instructions, "prout"));
+    printf("contain = %i", instructions_contain(instructions, "ss"));
     return (0);
 }
