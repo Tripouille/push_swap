@@ -2,49 +2,68 @@
 
 int	error(void)
 {
-	printf("Error\n");
+	write(2, "Error\n", 6);
 	return (-1);
 }
 
-bool	is_valid_number(const char *s)
-{
-	int	i;
-
-	if (ft_strcmp(s, "-2147483648") == 0)
-		return (true);
-	if (s[0] == '-')
-		++s;
-	if (*s == 0)
-		return (false);
-	if (ft_strlen(s) > 10)
-		return (false);
-	i = -1;
-	while (s[++i])
-		if (!ft_isdigit(s[i]))
-			return (false);
-	return (ft_strlen(s) < 9 || ft_strcmp(s, "2147483647") <= 0);
-}
-
-bool	get_numbers(char **args)
+bool	set_number(const char *s, long *nb)
 {
 	int		i;
-	int		nb;
+	bool	isNegative;
+
+	isNegative = false;
+	if (s[0] == '-')
+	{
+		isNegative = true;
+		++s;
+	}
+	if (s[0] == 0)
+		return (false);
+	*nb = 0;
+	i = -1;
+	while (ft_isdigit(s[++i]) && -*nb >= INT_MIN)
+		*nb = *nb * 10 + s[i] - '0';
+	if (isNegative)
+		*nb = -*nb;
+	if (s[i] || *nb > INT_MAX || *nb < INT_MIN)
+		return (false);
+	return (true);
+}
+
+bool	get_numbers(char **args, t_list *a)
+{
+	int		i;
+	long	nb;
 
 	i = 0;
 	while (args[++i] != NULL)
 	{
-		if (!is_valid_number(args[i]))
+		if (!set_number(args[i], &nb) || list_contain(a, nb))
+		{
+			list_destroy(a);
 			return (false);
-		nb = ft_atoi(args[i]);
-		printf("%d\n", nb);
+		}
+		list_push(a, nb);
 	}
+	list_show(*a, false);
 	return (true);
+}
+
+bool	check(void)
+{
+	return (false);
 }
 
 int	main(int argc, char **argv)
 {
+	t_list	a;
+	t_list	b;
+
 	(void)argc;
-	if (get_numbers(argv) == false)
+	list_initialize(&a);
+	list_initialize(&b);
+	if (get_numbers(argv, &a) == false)
 		return (error());
+	list_destroy(&a);
 	return (0);
 }
