@@ -15,7 +15,8 @@ bool	get_instructions(t_slist *instructionNames, t_instruction_infos instruction
 			buffer[i] = 0;
 			if (!instructions_contain(instructions, buffer))
 				return (false);
-			slist_push(instructionNames, buffer);
+			if (slist_push(instructionNames, buffer) == NULL)
+				return (false);
 			i = 0;
 		}
 		else
