@@ -15,7 +15,8 @@ bool	get_instructions(t_slist *instructionNames, t_instruction_infos instruction
 			buffer[i] = 0;
 			if (!instructions_contain(instructions, buffer))
 				return (false);
-			slist_push(instructionNames, buffer);
+			if (slist_push(instructionNames, buffer) == NULL)
+				return (false);
 			i = 0;
 		}
 		else
@@ -34,14 +35,16 @@ void	execute(t_slist *instructionNames, t_instruction_infos instructions[], t_il
 		instructions_call(instructions, i->s, a, b);
 		i = i->next;
 	}
-	instructions_call(instructions, instructionNames->tail->s, a, b);
+	if (instructionNames->tail != NULL)
+		instructions_call(instructions, instructionNames->tail->s, a, b);
 }
 
-bool	check(t_ilist *a, t_ilist *b)
+void	printResult(t_ilist *a, t_ilist *b)
 {
-	if (ilist_size(b) > 0)
-		return (false);
-	return (ilist_is_sort(a, false));
+	if (ilist_size(b) == 0 && ilist_is_sort(a, false))
+		printf("OK\n");
+	else
+		printf("KO\n");
 }
 
 void	destroy_lists(t_ilist *a, t_ilist *b, t_slist *instructions)
@@ -49,6 +52,14 @@ void	destroy_lists(t_ilist *a, t_ilist *b, t_slist *instructions)
 	ilist_destroy(a);
 	ilist_destroy(b);
 	slist_destroy(instructions);
+}
+
+static void	initialize(t_ilist *a, t_ilist *b, t_slist *instructionNames, t_instruction_infos instructions[])
+{
+	ilist_initialize(a);
+	ilist_initialize(b);
+	slist_initialize(instructionNames);
+	instructions_init(instructions);
 }
 
 int	main(int argc, char **argv)
@@ -60,21 +71,19 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	ilist_initialize(&a);
-	ilist_initialize(&b);
-	get_numbers(argv, &a);
-	slist_initialize(&instructionNames);
-	instructions_init(instructions);
+	initialize(&a, &b, &instructionNames, instructions);
+	if (!get_numbers(argv, &a))
+	{
+		ilist_destroy(&a);
+		errorExit();
+	}
 	if (!get_instructions(&instructionNames, instructions))
 	{
 		destroy_lists(&a, &b, &instructionNames);
 		errorExit();
 	}
 	execute(&instructionNames, instructions, &a, &b);
-	if (check(&a, &b))
-		printf("OK\n");
-	else
-		printf("KO\n");
+	printResult(&a, &b);
 	printf("debug : list after execute : "); ilist_show(a, false);
 	destroy_lists(&a, &b, &instructionNames);
 	return (0);

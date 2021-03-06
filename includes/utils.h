@@ -7,7 +7,7 @@
 # include "ilist.h"
 # include "instructions.h"
 
-void	get_numbers(char **args, t_ilist *a);
+bool	get_numbers(char **args, t_ilist *a);
 
 void	errorExit(void);
 int		ft_strlen(char const *s);
