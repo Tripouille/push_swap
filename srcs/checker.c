@@ -35,7 +35,8 @@ void	execute(t_slist *instructionNames, t_instruction_infos instructions[], t_il
 		instructions_call(instructions, i->s, a, b);
 		i = i->next;
 	}
-	instructions_call(instructions, i->s, a, b);
+	if (instructionNames->tail != NULL)
+		instructions_call(instructions, instructionNames->tail->s, a, b);
 }
 
 void	printResult(t_ilist *a, t_ilist *b)
