@@ -13,9 +13,9 @@ CHECKER_HEADERS = $(addprefix $(HEADERS_DIR)/, checker.h)
 CHECKER_SRCS = $(addprefix $(SRCS_DIR)/, checker.c)
 CHECKER_OBJS = $(CHECKER_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
-UTILS_HEADERS = $(addprefix $(HEADERS_DIR)/, list.h)
+UTILS_HEADERS = $(addprefix $(HEADERS_DIR)/, ilist.h)
 UTILS_SRCS = $(addprefix $(SRCS_DIR)/, $(addprefix utils/, utils_str.c utils_nb.c) \
-				$(addprefix list/, list.c list_utils.c list_handling.c list_infos.c))
+				$(addprefix ilist/, ilist.c ilist_utils.c ilist_handling.c ilist_infos.c))
 UTILS_OBJS = $(UTILS_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CC = gcc

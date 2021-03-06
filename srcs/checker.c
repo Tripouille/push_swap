@@ -30,7 +30,7 @@ bool	set_number(const char *s, long *nb)
 	return (true);
 }
 
-bool	get_numbers(char **args, t_list *a)
+bool	get_numbers(char **args, t_ilist *a)
 {
 	int		i;
 	long	nb;
@@ -38,14 +38,14 @@ bool	get_numbers(char **args, t_list *a)
 	i = 0;
 	while (args[++i] != NULL)
 	{
-		if (!set_number(args[i], &nb) || list_contain(a, nb))
+		if (!set_number(args[i], &nb) || ilist_contain(a, nb))
 		{
-			list_destroy(a);
+			ilist_destroy(a);
 			return (false);
 		}
-		list_push(a, nb);
+		ilist_push(a, nb);
 	}
-	list_show(*a, false);
+	ilist_show(*a, false);
 	return (true);
 }
 
@@ -56,14 +56,14 @@ bool	check(void)
 
 int	main(int argc, char **argv)
 {
-	t_list	a;
-	t_list	b;
+	t_ilist	a;
+	t_ilist	b;
 
 	(void)argc;
-	list_initialize(&a);
-	list_initialize(&b);
+	ilist_initialize(&a);
+	ilist_initialize(&b);
 	if (get_numbers(argv, &a) == false)
 		return (error());
-	list_destroy(&a);
+	ilist_destroy(&a);
 	return (0);
 }

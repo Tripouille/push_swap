@@ -1,15 +1,15 @@
-#include "list.h"
+#include "ilist.h"
 
-bool					list_is_sort(t_list *list, bool descending)
+bool					ilist_is_sort(t_ilist *ilist, bool descending)
 {
-    t_list_element *element;
+    t_ilist_element *element;
 
-    if (list->head == list->tail)
+    if (ilist->head == ilist->tail)
         return (true);
-    element = list->head;
+    element = ilist->head;
     if (descending)
     {
-        while (element != list->tail)
+        while (element != ilist->tail)
         {
             if (element->next->value > element->value)
                 return (false);
@@ -18,7 +18,7 @@ bool					list_is_sort(t_list *list, bool descending)
     }
     else
     {
-        while (element != list->tail)
+        while (element != ilist->tail)
         {
             if (element->next->value < element->value)
                 return (false);
@@ -28,48 +28,48 @@ bool					list_is_sort(t_list *list, bool descending)
     return (true);
 }
 
-bool					list_contain(t_list *list, int needle)
+bool					ilist_contain(t_ilist *ilist, int needle)
 {
-    t_list_element	*element;
+    t_ilist_element	*element;
 
-    if (list->head == NULL)
+    if (ilist->head == NULL)
         return (false);
-    element = list->head;
-    while (element != list->tail)
+    element = ilist->head;
+    while (element != ilist->tail)
     {
         if (element->value == needle)
             return (true);
         element = element->next;
     }
-    return (list->tail->value == needle);
+    return (ilist->tail->value == needle);
 }
 
-size_t					list_size(t_list *list)
+size_t					ilist_size(t_ilist *ilist)
 {
-    t_list_element	*element;
+    t_ilist_element	*element;
 	size_t			size;
 
-	element = list->head;
+	element = ilist->head;
 	size = 0;
-	while (element != list->tail)
+	while (element != ilist->tail)
 	{
 		element = element->next;
 		size += 1;
 	}
-	if (list->tail != NULL)
+	if (ilist->tail != NULL)
 		size += 1;
 	return (size);
 }
 
-void					list_show(t_list list, bool reverse)
+void					ilist_show(t_ilist ilist, bool reverse)
 {
-    t_list_element *element;
-	if (list.head == NULL)
+    t_ilist_element *element;
+	if (ilist.head == NULL)
 		return ;
 	else if (reverse)
 	{
-		element = list.tail;
-		while (element != list.head)
+		element = ilist.tail;
+		while (element != ilist.head)
 		{
 			printf("%i ", element->value);
 			element = element->prev;
@@ -77,8 +77,8 @@ void					list_show(t_list list, bool reverse)
 	}
 	else
 	{
-		element = list.head;
-		while (element != list.tail)
+		element = ilist.head;
+		while (element != ilist.tail)
 		{
 			printf("%i ", element->value);
 			element = element->next;
