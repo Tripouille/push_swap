@@ -29,20 +29,19 @@ void    instructions_call(t_instruction_infos const instructions[], char *name,
 	int		i;
 
 	i = 0;
-	while (instructions[i].name[0]
-	&& ft_strcmp(instructions[i].name, name) == 0)
+	while (instructions[i].name[0] && ft_strcmp(instructions[i].name, name))
 		i++;
 	instructions[i].funtion(a, b);
 }
 
 
-bool    instructions_contain(t_instruction_infos const instructions[], char *name)
+bool    instructions_contain(t_instruction_infos const instructions[],
+								char *name)
 {
 	int		i;
 
 	i = 0;
-	while (instructions[i].name[0]
-	&& ft_strcmp(instructions[i].name, name) == 0)
+	while (instructions[i].name[0] && ft_strcmp(instructions[i].name, name))
 		i++;
 	return (instructions[i].name[0]);
 }
