@@ -45,3 +45,9 @@ bool    instructions_contain(t_instruction_infos const instructions[],
 		i++;
 	return (instructions[i].name[0]);
 }
+
+void	instructions_destroy_ab(t_ilist *a, t_ilist *b)
+{
+	ilist_destroy(a);
+	ilist_destroy(b);
+}

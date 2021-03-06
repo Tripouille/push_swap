@@ -1,15 +1,25 @@
-#include "ilist.h"
-#include "utils.h"
-#include <stdio.h>
+#include "instructions.h"
 
-int main(void)
+void initialize(t_instruction_infos instructions[], t_ilist *a, t_ilist *b)
+{
+    instructions_init(instructions);
+	ilist_initialize(a);
+	ilist_initialize(b);
+}
+
+int main(int ac, char **av)
 {
     t_instruction_infos     instructions[12];
+    t_ilist					a; 
+    t_ilist					b;
 
-    instructions_init(instructions);
-    int i = -1;
-    while (instructions[++i].name[0])
-        printf("%s\n", instructions[i].name);
-    printf("contain = %i", instructions_contain(instructions, "ss"));
+	if (ac == 1)
+		return (1);
+	initialize(instructions, &a, &b);
+	get_numbers(av, &a);
+	ilist_show(a, false);
+	instructions_rotate_a(&a, &b);
+	ilist_show(a, false);
+	instructions_destroy_ab(&a, &b);
     return (0);
 }

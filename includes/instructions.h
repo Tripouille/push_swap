@@ -17,6 +17,8 @@ void    instructions_init(t_instruction_infos instructions[]);
 void    instructions_call(t_instruction_infos const instructions[], char *name,
 							t_ilist *a, t_ilist *b);
 bool    instructions_contain(t_instruction_infos const instructions[], char *name);
+void	instructions_destroy_ab(t_ilist *a, t_ilist *b);
+
 
 void	instructions_swap_a(t_ilist *a, t_ilist *b);
 void	instructions_swap_b(t_ilist *a, t_ilist *b);
