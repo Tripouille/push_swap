@@ -5,9 +5,9 @@
 # include <stdbool.h>
 # include <limits.h>
 
+# include "utils.h"
 # include "list.h"
 
-int		ft_strlen(char const *s);
-bool	ft_isdigit(char c);
+void	get_numbers(char **args, t_list *a);
 
 #endif
