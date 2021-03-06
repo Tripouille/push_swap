@@ -54,18 +54,20 @@ void					ilist_destroy(t_ilist *ilist)
 	ilist->tail = NULL;
 }
 
-int                     ilist_get_smallest(t_ilist *ilist)
+t_ilist_element                     *ilist_get_smallest(t_ilist *ilist)
 {
-	int         smallest;
+	t_ilist_element         *smallest;
 	t_ilist_element         *element;
 
-	smallest = ilist->head->i;
+	smallest = ilist->head;
 	element = ilist->head;
 	while (element != ilist->tail)
 	{
-		if (element->i < smallest)
-			smallest = element->i;
+		if (element->i < smallest->i)
+			smallest = element;
 		element = element->next;
 	}
-	return (ft_min(smallest, ilist->tail->i));
+	if (smallest->i < ilist->tail->i)
+		return (smallest);
+	return (ilist->tail);
 }

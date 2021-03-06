@@ -23,7 +23,7 @@ void    instructions_init(t_instruction_infos instructions[])
 	instructions_set(instructions + 11, "", NULL);
 }
 
-void    instructions_call(t_instruction_infos const instructions[], char *name,
+void    instructions_call(t_instruction_infos const instructions[], char const *name,
 							t_ilist *a, t_ilist *b)
 {
 	int		i;
