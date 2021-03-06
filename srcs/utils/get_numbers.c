@@ -37,7 +37,7 @@ void	get_numbers(char **args, t_ilist *a)
 			ilist_destroy(a);
 			errorExit();
 		}
-		ilist_push(a, nb);
+		if (ilist_push(a, nb) == NULL)
+			errorExit();
 	}
-	ilist_show(*a, false);
 }
