@@ -24,7 +24,7 @@ static bool	set_number(const char *s, long *nb)
 	return (true);
 }
 
-void	get_numbers(char **args, t_ilist *a)
+bool	get_numbers(char **args, t_ilist *a)
 {
 	int		i;
 	long	nb;
@@ -33,11 +33,9 @@ void	get_numbers(char **args, t_ilist *a)
 	while (args[++i] != NULL)
 	{
 		if (!set_number(args[i], &nb) || ilist_contain(a, nb))
-		{
-			ilist_destroy(a);
-			errorExit();
-		}
+			return (false);
 		if (ilist_push(a, nb) == NULL)
-			errorExit();
+			return (false);
 	}
+	return (true);
 }
