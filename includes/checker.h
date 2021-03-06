@@ -6,8 +6,6 @@
 # include <limits.h>
 
 # include "utils.h"
-# include "list.h"
-
-void	get_numbers(char **args, t_list *a);
+# include "ilist.h"
 
 #endif

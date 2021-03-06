@@ -1,16 +1,16 @@
-#include "list.h"
+#include "ilist.h"
 #include <stdio.h>
 
 int main(void)
 {
-    t_list a;
-    list_initialize(&a);
-    list_show(a, false);
+    t_ilist a;
+    ilist_initialize(&a);
+    ilist_show(a, false);
 
-    list_push(&a, 1);
-    list_push(&a, 0);
+    ilist_push(&a, 1);
+    ilist_push(&a, 0);
    
-    printf("is sort = %i\n", list_is_sort(&a, true));
+    printf("is sort = %i\n", ilist_is_sort(&a, true));
 
     /*while (list_size(&a) > 0)
     {
@@ -20,6 +20,6 @@ int main(void)
         list_show(a, false);
         list_shift(&a);
     }*/
-    list_destroy(&a);
+    ilist_destroy(&a);
     return (0);
 }
