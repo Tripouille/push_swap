@@ -6,11 +6,11 @@ void					ilist_initialize(t_ilist *ilist)
 	ilist->tail = NULL;
 }
 
-t_ilist_element			*ilist_push(t_ilist *ilist, int value)
+t_ilist_element			*ilist_push(t_ilist *ilist, int i)
 {
 	t_ilist_element	*injected_element;
 
-	injected_element = ilist_inject(ilist, value);
+	injected_element = ilist_inject(ilist, i);
 	if (injected_element == NULL)
 		return (NULL);
 	ilist->tail = injected_element;
@@ -20,7 +20,7 @@ t_ilist_element			*ilist_push(t_ilist *ilist, int value)
 int						ilist_pop(t_ilist *ilist)
 {
 	t_ilist_element	*element_to_destroy;
-	int				return_value;
+	int				return_i;
 
 	element_to_destroy = ilist->tail;
 	if (ilist->head == ilist->tail)
@@ -34,16 +34,16 @@ int						ilist_pop(t_ilist *ilist)
 		ilist->tail->next->prev = ilist->tail->prev;
 		ilist->tail = ilist->tail->prev;
 	}
-	return_value = element_to_destroy->value;
+	return_i = element_to_destroy->i;
 	free(element_to_destroy);
-	return (return_value);
+	return (return_i);
 }
 
-t_ilist_element			*ilist_unshift(t_ilist *ilist, int value)
+t_ilist_element			*ilist_unshift(t_ilist *ilist, int i)
 {
 	t_ilist_element	*injected_element;
 
-	injected_element = ilist_inject(ilist, value);
+	injected_element = ilist_inject(ilist, i);
 	if (injected_element == NULL)
 		return (NULL);
 	ilist->head = injected_element;
@@ -53,7 +53,7 @@ t_ilist_element			*ilist_unshift(t_ilist *ilist, int value)
 int						ilist_shift(t_ilist *ilist)
 {
 	t_ilist_element	*element_to_destroy;
-	int				return_value;
+	int				return_i;
 
 	element_to_destroy = ilist->head;
 	if (ilist->head == ilist->tail)
@@ -67,7 +67,7 @@ int						ilist_shift(t_ilist *ilist)
 		ilist->head->prev->next = ilist->head->next;
 		ilist->head = ilist->head->next;
 	}
-	return_value = element_to_destroy->value;
+	return_i = element_to_destroy->i;
 	free(element_to_destroy);
-	return (return_value);
+	return (return_i);
 }
