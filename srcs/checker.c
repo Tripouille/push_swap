@@ -1,8 +1,10 @@
 #include "checker.h"
 
-bool	check(void)
+bool	check(t_ilist *a, t_ilist *b)
 {
-	return (false);
+	if (ilist_size(b) > 0)
+		return (false);
+	return (ilist_is_sort(a, false));
 }
 
 int	main(int argc, char **argv)
@@ -15,6 +17,12 @@ int	main(int argc, char **argv)
 	ilist_initialize(&a);
 	ilist_initialize(&b);
 	get_numbers(argv, &a);
+	//get_instructions();
+	//execute();
+	if (check(&a, &b))
+		printf("OK\n");
+	else
+		printf("KO\n");
 	ilist_destroy(&a);
 	return (0);
 }
