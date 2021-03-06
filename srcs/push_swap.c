@@ -8,26 +8,18 @@ int main(void)
     list_show(a, false);
 
     list_push(&a, 1);
-    list_push(&a, 2);
-    list_push(&a, 3);
-    list_push(&a, 4);
-    list_push(&a, 5);
-    list_push(&a, 6);
-    list_push(&a, 7);
-    if (list_contain(&a, 7))
-        printf("yep\n");
-    while (list_size(&a) > 0)
+    list_push(&a, 0);
+   
+    printf("is sort = %i\n", list_is_sort(&a, true));
+
+    /*while (list_size(&a) > 0)
     {
         printf("list size = %lu\n", list_size(&a));
         list_show(a, false);
         list_swap(&a);
         list_show(a, false);
         list_shift(&a);
-    }
+    }*/
     list_destroy(&a);
-    if (list_contain(&a, 1))
-        printf("yep\n");
-    else
-        printf("pas yep\n");
     return (0);
 }

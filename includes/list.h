@@ -34,6 +34,7 @@ void					list_swap(t_list * list);
 void					list_rotate(t_list *list);
 void					list_reverse_rotate(t_list *list);
 
+bool					list_is_sort(t_list *list, bool descending);
 bool					list_contain(t_list *list, int needle);
 size_t                  list_size(t_list *list);
 void                    list_show(t_list list, bool reverse);

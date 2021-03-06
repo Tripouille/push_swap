@@ -1,5 +1,33 @@
 #include "list.h"
 
+bool					list_is_sort(t_list *list, bool descending)
+{
+    t_list_element *element;
+
+    if (list->head == list->tail)
+        return (true);
+    element = list->head;
+    if (descending)
+    {
+        while (element != list->tail)
+        {
+            if (element->next->value > element->value)
+                return (false);
+            element = element->next;
+        }
+    }
+    else
+    {
+        while (element != list->tail)
+        {
+            if (element->next->value < element->value)
+                return (false);
+            element = element->next;
+        }   
+    }
+    return (true);
+}
+
 bool					list_contain(t_list *list, int needle)
 {
     t_list_element	*element;
@@ -15,7 +43,6 @@ bool					list_contain(t_list *list, int needle)
     }
     return (list->tail->value == needle);
 }
-
 
 size_t					list_size(t_list *list)
 {
