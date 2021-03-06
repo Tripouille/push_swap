@@ -16,7 +16,11 @@ int main(int ac, char **av)
 	if (ac == 1)
 		return (1);
 	initialize(instructions, &a, &b);
-	get_numbers(av, &a);
+	if (!get_numbers(av, &a))
+	{
+		ilist_destroy(&a);
+		errorExit();
+	}
 	ilist_show(a, false);
 	instructions_rotate_a(&a, &b);
 	ilist_show(a, false);
