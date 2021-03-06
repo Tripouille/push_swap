@@ -1,12 +1,6 @@
 #include "checker.h"
 
-bool	is_valid_instruction(char *s)
-{
-	(void)s;
-	return (true);
-}
-
-bool	get_instructions(t_slist *instructions)
+bool	get_instructions(t_slist *instructionNames, t_instruction_infos instructions[])
 {
 	int		i;
 	char	buffer[4];
@@ -19,15 +13,27 @@ bool	get_instructions(t_slist *instructions)
 		else if (buffer[i] == '\n')
 		{
 			buffer[i] = 0;
-			if (!is_valid_instruction(buffer))
+			if (!instructions_contain(instructions, buffer))
 				return (false);
-			slist_push(instructions, buffer);
+			slist_push(instructionNames, buffer);
 			i = 0;
 		}
 		else
 			++i;
 	}
 	return (i == 0);
+}
+
+void	execute(t_slist *instructionNames, t_instruction_infos instructions[], t_ilist *a, t_ilist *b)
+{
+	t_slist_element	*i;
+
+	i = instructionNames->head;
+	while (i != instructionNames->tail)
+	{
+		instructions_call(instructions, i->s, a, b);
+		i = i->next;
+	}
 }
 
 bool	check(t_ilist *a, t_ilist *b)
@@ -46,27 +52,30 @@ void	destroy_lists(t_ilist *a, t_ilist *b, t_slist *instructions)
 
 int	main(int argc, char **argv)
 {
-	t_ilist	a;
-	t_ilist	b;
-	t_slist instructions;
+	t_ilist				a;
+	t_ilist				b;
+	t_slist				instructionNames;
+	t_instruction_infos	instructions[12];
 
 	if (argc == 1)
 		return (0);
 	ilist_initialize(&a);
 	ilist_initialize(&b);
 	get_numbers(argv, &a);
-	slist_initialize(&instructions);
-	if (!get_instructions(&instructions))
+	slist_initialize(&instructionNames);
+	instructions_init(instructions);
+	if (!get_instructions(&instructionNames, instructions))
 	{
-		destroy_lists(&a, &b, &instructions);
+		destroy_lists(&a, &b, &instructionNames);
 		errorExit();
 	}
-	slist_show(instructions, false);
-	//execute();
+	slist_show(instructionNames, false);
+	execute(&instructionNames, instructions, &a, &b);
 	if (check(&a, &b))
 		printf("OK\n");
 	else
 		printf("KO\n");
-	destroy_lists(&a, &b, &instructions);
+	printf("list after execute :\n"); ilist_show(a, false);
+	destroy_lists(&a, &b, &instructionNames);
 	return (0);
 }
