@@ -69,13 +69,12 @@ int	main(int argc, char **argv)
 		destroy_lists(&a, &b, &instructionNames);
 		errorExit();
 	}
-	slist_show(instructionNames, false);
 	execute(&instructionNames, instructions, &a, &b);
 	if (check(&a, &b))
 		printf("OK\n");
 	else
 		printf("KO\n");
-	printf("list after execute :\n"); ilist_show(a, false);
+	printf("debug : list after execute : "); ilist_show(a, false);
 	destroy_lists(&a, &b, &instructionNames);
 	return (0);
 }
