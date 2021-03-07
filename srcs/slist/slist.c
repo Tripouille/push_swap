@@ -6,7 +6,7 @@ void					slist_initialize(t_slist *slist)
 	slist->tail = NULL;
 }
 
-t_slist_element			*slist_push(t_slist *slist, char *s)
+t_slist_element			*slist_push(t_slist *slist, char const *s)
 {
 	t_slist_element	*injected_element;
 
@@ -36,7 +36,7 @@ void						slist_pop(t_slist *slist)
 	free(element_to_destroy);
 }
 
-t_slist_element			*slist_unshift(t_slist *slist, char *s)
+t_slist_element			*slist_unshift(t_slist *slist, char const *s)
 {
 	t_slist_element	*injected_element;
 

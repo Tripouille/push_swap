@@ -2,30 +2,30 @@
 
 bool					ilist_is_sort(t_ilist *ilist, bool descending)
 {
-    t_ilist_element *element;
+	t_ilist_element *element;
 
-    if (ilist->head == ilist->tail)
-        return (true);
-    element = ilist->head;
-    if (descending)
-    {
-        while (element != ilist->tail)
-        {
-            if (element->next->i > element->i)
-                return (false);
-            element = element->next;
-        }
-    }
-    else
-    {
-        while (element != ilist->tail)
-        {
-            if (element->next->i < element->i)
-                return (false);
-            element = element->next;
-        }   
-    }
-    return (true);
+	if (ilist->head == ilist->tail)
+		return (true);
+	element = ilist->head;
+	if (descending)
+	{
+		while (element != ilist->tail)
+		{
+			if (element->next->i > element->i)
+				return (false);
+			element = element->next;
+		}
+	}
+	else
+	{
+		while (element != ilist->tail)
+		{
+			if (element->next->i < element->i)
+				return (false);
+			element = element->next;
+		}   
+	}
+	return (true);
 }
 
 bool					ilist_is_globally_sort(t_ilist *ilist, t_ilist_element *smallest)
@@ -46,23 +46,23 @@ bool					ilist_is_globally_sort(t_ilist *ilist, t_ilist_element *smallest)
 
 bool					ilist_contain(t_ilist *ilist, int needle)
 {
-    t_ilist_element	*element;
+	t_ilist_element	*element;
 
-    if (ilist->head == NULL)
-        return (false);
-    element = ilist->head;
-    while (element != ilist->tail)
-    {
-        if (element->i == needle)
-            return (true);
-        element = element->next;
-    }
-    return (ilist->tail->i == needle);
+	if (ilist->head == NULL)
+		return (false);
+	element = ilist->head;
+	while (element != ilist->tail)
+	{
+		if (element->i == needle)
+			return (true);
+		element = element->next;
+	}
+	return (ilist->tail->i == needle);
 }
 
 size_t					ilist_size(t_ilist *ilist)
 {
-    t_ilist_element	*element;
+	t_ilist_element	*element;
 	size_t			size;
 
 	element = ilist->head;
@@ -77,14 +77,14 @@ size_t					ilist_size(t_ilist *ilist)
 	return (size);
 }
 
-bool                    ilist_is_empty(t_ilist *ilist)
+bool					ilist_is_empty(t_ilist *ilist)
 {
-    return (ilist->head == NULL);
+	return (ilist->head == NULL);
 }
 
 void					ilist_show(t_ilist ilist, bool reverse)
 {
-    t_ilist_element *element;
+	t_ilist_element *element;
 	if (ilist.head == NULL)
 		return ;
 	else if (reverse)
@@ -105,5 +105,5 @@ void					ilist_show(t_ilist ilist, bool reverse)
 			element = element->next;
 		}
 	}
-    printf("%i\n", element->i);
+	printf("%i\n", element->i);
 }

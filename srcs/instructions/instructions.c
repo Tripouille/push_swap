@@ -1,13 +1,13 @@
 #include "instructions.h"
 
-void    instructions_set(t_instruction_infos *instruction_infos, char *name,
+void	instructions_set(t_instruction_infos *instruction_infos, char *name,
 						instruction function)
 {
 	ft_strcpy(instruction_infos->name, name);
 	instruction_infos->funtion = function;
 }
 
-void    instructions_init(t_instruction_infos instructions[])
+void	instructions_init(t_instruction_infos instructions[])
 {
 	instructions_set(instructions + 0, "sa", instructions_swap_a);
 	instructions_set(instructions + 1, "sb", instructions_swap_b);
@@ -23,7 +23,7 @@ void    instructions_init(t_instruction_infos instructions[])
 	instructions_set(instructions + 11, "", NULL);
 }
 
-void    instructions_call(t_instruction_infos const instructions[], char const *name,
+void	instructions_call(t_instruction_infos const instructions[], char const *name,
 							t_ilist *a, t_ilist *b)
 {
 	int		i;
@@ -35,7 +35,7 @@ void    instructions_call(t_instruction_infos const instructions[], char const *
 }
 
 
-bool    instructions_contain(t_instruction_infos const instructions[],
+bool	instructions_contain(t_instruction_infos const instructions[],
 								char *name)
 {
 	int		i;

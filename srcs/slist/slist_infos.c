@@ -2,7 +2,7 @@
 
 size_t					slist_size(t_slist *slist)
 {
-    t_slist_element	*element;
+	t_slist_element	*element;
 	size_t			size;
 
 	element = slist->head;
@@ -19,7 +19,7 @@ size_t					slist_size(t_slist *slist)
 
 void					slist_show(t_slist slist, bool reverse)
 {
-    t_slist_element *element;
+	t_slist_element *element;
 	if (slist.head == NULL)
 		return ;
 	else if (reverse)
@@ -40,5 +40,5 @@ void					slist_show(t_slist slist, bool reverse)
 			element = element->next;
 		}
 	}
-    printf("%s\n", element->s);
+	printf("%s\n", element->s);
 }
