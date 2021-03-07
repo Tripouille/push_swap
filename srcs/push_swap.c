@@ -1,39 +1,5 @@
 #include "instructions.h"
 
-bool					ilist_is_globally_sort(t_ilist *ilist, t_ilist_element *smallest)
-{
-	t_ilist_element *element;
-
-	if (ilist->head == ilist->tail)
-		return (true);
-	element = smallest;
-	while (element != smallest->prev)
-	{
-		if (element->i > element->next->i)
-			return (false);
-		element = element->next;
-	}
-	return (smallest->prev->i < smallest->i);
-}
-
-t_ilist_element		*ilist_get_next_smallest(t_ilist *ilist, t_ilist_element *limit)
-{
-	t_ilist_element         *result;
-	t_ilist_element         *element;
-
-	result = NULL;
-	element = ilist->head;
-	while (element != ilist->tail)
-	{
-		if (element->i > limit->i && (result == NULL || element->i < result->i))
-			result = element;
-		element = element->next;
-	}
-	if (ilist->tail->i > limit->i && (result == NULL || ilist->tail->i < result->i))
-		return (ilist->tail);
-	return (result);
-}
-
 void    print_and_call(t_instruction_infos const instructions[], char const *name,
 							t_ilist *a, t_ilist *b)
 {
