@@ -1,19 +1,17 @@
 #include "instructions.h"
 
-void	instructions_reverse_rotate_a(t_ilist *a, t_ilist *b)
+void	instructions_reverse_rotate_a(t_stacks *stacks)
 {
-	ilist_reverse_rotate(a);
-	(void)b;
+	ilist_reverse_rotate(&stacks->a);
 }
 
-void	instructions_reverse_rotate_b(t_ilist *a, t_ilist *b)
+void	instructions_reverse_rotate_b(t_stacks *stacks)
 {
-	(void)a;
-	ilist_reverse_rotate(b);
+	ilist_reverse_rotate(&stacks->b);
 }
 
-void	instructions_reverse_rotate_ab(t_ilist *a, t_ilist *b)
+void	instructions_reverse_rotate_ab(t_stacks *stacks)
 {
-	ilist_reverse_rotate(a);
-	ilist_reverse_rotate(b);
+	ilist_reverse_rotate(&stacks->a);
+	ilist_reverse_rotate(&stacks->b);
 }

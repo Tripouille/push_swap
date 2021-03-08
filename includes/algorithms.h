@@ -3,12 +3,7 @@
 # include "ilist.h"
 # include "slist.h"
 # include "instructions.h"
-
-typedef struct s_stacks
-{
-	t_ilist		a;
-	t_ilist		b;
-}				t_stacks;
+# include "stacks.h"
 
 void		stock_and_call(t_slist *instructionNames, t_instruction_infos const instructions[],
 							char const *name, t_stacks *stacks);

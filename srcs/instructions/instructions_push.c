@@ -1,15 +1,15 @@
 #include "instructions.h"
 
-void	instructions_push_a(t_ilist *a, t_ilist *b)
+void	instructions_push_a(t_stacks *stacks)
 {
-	if (ilist_size(b) == 0)
+	if (ilist_is_empty(&stacks->b))
 		return ;
-	ilist_unshift(a, ilist_shift(b));
+	ilist_unshift(&stacks->a, ilist_shift(&stacks->b));
 }
 
-void	instructions_push_b(t_ilist *a, t_ilist *b)
+void	instructions_push_b(t_stacks *stacks)
 {
-	if (ilist_size(a) == 0)
+	if (ilist_is_empty(&stacks->a))
 		return ;
-	ilist_unshift(b, ilist_shift(a));
+	ilist_unshift(&stacks->b, ilist_shift(&stacks->a));
 }
