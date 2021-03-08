@@ -24,14 +24,14 @@ void	instructions_init(t_instruction_infos instructions[])
 }
 
 void	instructions_call(t_instruction_infos const instructions[], char const *name,
-							t_ilist *a, t_ilist *b)
+							t_stacks *stacks)
 {
 	int		i;
 
 	i = 0;
 	while (instructions[i].name[0] && ft_strcmp(instructions[i].name, name))
 		i++;
-	instructions[i].funtion(a, b);
+	instructions[i].funtion(stacks);
 }
 
 
@@ -44,10 +44,4 @@ bool	instructions_contain(t_instruction_infos const instructions[],
 	while (instructions[i].name[0] && ft_strcmp(instructions[i].name, name))
 		i++;
 	return (instructions[i].name[0]);
-}
-
-void	instructions_destroy_ab(t_ilist *a, t_ilist *b)
-{
-	ilist_destroy(a);
-	ilist_destroy(b);
 }

@@ -4,14 +4,13 @@ void	stock_and_call(t_slist *instructionNames, t_instruction_infos const instruc
 						char const *name, t_stacks *stacks)
 {
 	slist_push(instructionNames, name);
-	instructions_call(instructions, name, &stacks->a, &stacks->b);
+	instructions_call(instructions, name, stacks);
 }
 
 static void	initialize(t_instruction_infos instructions[], t_slist *instructionNames, t_stacks *stacks)
 {
 	instructions_init(instructions);
-	ilist_initialize(&stacks->a);
-	ilist_initialize(&stacks->b);
+	stacks_init(stacks);
 	slist_initialize(instructionNames);
 }
 
@@ -26,7 +25,7 @@ int		main(int ac, char **av)
 	initialize(instructions, &instructionNames, &stacks);
 	if (!get_numbers(av, &stacks.a))
 	{
-		ilist_destroy(&stacks.a);
+		stacks_destroy(&stacks);
 		errorExit();
 	}
 	if (!ilist_is_sort(&stacks.a, false))
@@ -35,7 +34,7 @@ int		main(int ac, char **av)
 	//ilist_show(a, false);
 	if (!ilist_is_sort(&stacks.a, false))
 		write(2, "NOT SORTED\n", 11);
-	instructions_destroy_ab(&stacks.a, &stacks.b);
+	stacks_destroy(&stacks);
 	slist_destroy(&instructionNames);
 	return (0);
 }

@@ -9,5 +9,6 @@
 # include "ilist.h"
 # include "slist.h"
 # include "instructions.h"
+# include "stacks.h"
 
 #endif
