@@ -43,21 +43,12 @@ void	print_best_algo(t_instruction_infos const instructions[],
 						t_stacks const *stacks)
 {
 	t_benchmark			benchmark[10];
-	t_benchmark const	*best_benchmark;
-	t_slist_element		*instruction;
 
 	if (ilist_is_sort(&stacks->a, false))
 		return ;
 	benchmark_init(benchmark);
 	benchmark_launch(instructions, stacks, benchmark);
-	best_benchmark = get_best_benchmark(benchmark);
-	instruction = best_benchmark->required_instructions.head;
-	while (instruction != best_benchmark->required_instructions.tail)
-	{
-		printf("%s\n", instruction->s);
-		instruction = instruction->next;
-	}
-	printf("%s\n", instruction->s);
+	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
 	benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }

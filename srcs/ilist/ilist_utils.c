@@ -72,14 +72,14 @@ t_ilist_element	*ilist_get_smallest(t_ilist const *ilist)
 	return (ilist->tail);
 }
 
-void	ilist_show(t_ilist ilist)
+void	ilist_show(t_ilist const *ilist, char sep)
 {
 	t_ilist_element	*element;
 
-	element = ilist.head;
-	while (element != ilist.tail)
+	element = ilist->head;
+	while (element != ilist->tail)
 	{
-		dprintf(2, "%i ", element->i);
+		dprintf(2, "%i%c", element->i, sep);
 		element = element->next;
 	}
 	dprintf(2, "%i\n", element->i);

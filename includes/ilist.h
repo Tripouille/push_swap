@@ -23,7 +23,7 @@ t_ilist_element			*create_ilist_element(int i, t_ilist_element *prev,
 t_ilist_element			*ilist_inject(t_ilist *ilist, int i);
 void					ilist_destroy(t_ilist *ilist);
 t_ilist_element			*ilist_get_smallest(t_ilist const *ilist);
-void					ilist_show(t_ilist ilist);
+void					ilist_show(t_ilist const *ilist, char sep);
 
 void					ilist_initialize(t_ilist *ilist);
 t_ilist_element			*ilist_push(t_ilist *ilist, int data);
