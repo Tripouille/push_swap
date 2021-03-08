@@ -3,6 +3,9 @@
 # include "stacks.h"
 # include "utils.h"
 
+# define RA 5
+# define RRA 8
+
 typedef void (*instruction)(t_stacks *stacks);
 
 typedef struct	  s_instruction_infos

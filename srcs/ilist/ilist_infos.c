@@ -44,6 +44,26 @@ bool					ilist_is_globally_sort(t_ilist *ilist, t_ilist_element *smallest)
 	return (smallest->prev->i < smallest->i);
 }
 
+bool					ilist_is_globally_sort2(t_ilist *ilist)
+{
+	t_ilist_element *element;
+	bool			metEnd;
+
+	metEnd = false;
+	element = ilist->head;
+	while (element != ilist->tail)
+	{
+		if (element->i > element->next->i)
+		{
+			if (metEnd)
+				return (false);
+			metEnd = true;
+		}
+		element = element->next;
+	}
+	return (!metEnd || ilist->tail->i < ilist->head->i);
+}
+
 bool					ilist_contain(t_ilist *ilist, int needle)
 {
 	t_ilist_element	*element;
