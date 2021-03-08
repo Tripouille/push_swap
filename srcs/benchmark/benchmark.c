@@ -2,10 +2,8 @@
 
 static void	benchmark_init(t_benchmark benchmark[])
 {
-	benchmark[0].algo = &franky_sort;
-	benchmark[1].algo = &franky_sort;
-	benchmark[2].algo = &franky_sort;
-	benchmark[3].algo = NULL;
+	benchmark[0].algo = &quick_sort;
+	benchmark[1].algo = NULL;
 }
 
 static void benchmark_launch(t_instruction_infos instructions[], t_stacks *stacks,
@@ -39,7 +37,7 @@ static t_benchmark	*get_best_benchmark(t_benchmark benchmark[])
 
 void	print_best_algo(t_instruction_infos instructions[], t_stacks *stacks)
 {
-	t_benchmark				benchmark[4];
+	t_benchmark				benchmark[2];
 	t_benchmark				*best_benchmark;
 	t_slist_element			*instruction;
 
@@ -51,7 +49,7 @@ void	print_best_algo(t_instruction_infos instructions[], t_stacks *stacks)
 	instruction = best_benchmark->required_instructions.head;
 	while (instruction != best_benchmark->required_instructions.tail)
 	{
-		printf("%s ", instruction->s);
+		printf("%s\n", instruction->s);
 		instruction = instruction->next;
 	}
 	printf("%s\n", instruction->s);
