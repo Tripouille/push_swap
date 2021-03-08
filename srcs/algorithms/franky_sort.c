@@ -23,9 +23,9 @@ void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *requiredInstr
 		rotate = "rra";
 	while (stacks->a.head != smallest)
 	{
-		//if (stacks->a.head->i > stacks->a.head->next->i && !ilist_is_globally_sort(&stacks->a, smallest))
-			//stock_and_call(instructions, requiredInstructions, "sa", stacks);
-		//else
+		if (stacks->a.head->i > stacks->a.head->next->i && !ilist_is_globally_sort(&stacks->a, smallest))
+			stock_and_call(instructions, requiredInstructions, "sa", stacks);
+		else
 			stock_and_call(instructions, requiredInstructions, rotate, stacks);
 	}
 }

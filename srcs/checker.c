@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 	}
 	execute(&instructionNames, instructions, &stacks);
 	printResult(&stacks);
-	printf("debug : list after execute : "); ilist_show(stacks.a, false);
+	//printf("debug : list after execute : "); ilist_show(stacks.a, false);
 	destroy_lists(&stacks, &instructionNames);
 	return (0);
 }

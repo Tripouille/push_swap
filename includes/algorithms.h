@@ -5,9 +5,12 @@
 # include "instructions.h"
 # include "stacks.h"
 
-void		stock_and_call(t_instruction_infos const instructions[], t_slist *instructionNames,
+void		stock_and_call(t_instruction_infos const instructions[], t_slist *required_instructions,
 							char const *name, t_stacks *stacks);
+char const	*get_best_rotate_dir(t_stacks *stacks, t_ilist_element *target);
+
 
 t_slist		franky_sort(t_instruction_infos instructions[], t_stacks *stacks);
+t_slist		selection_sort(t_instruction_infos instructions[], t_stacks *stacks);
 
 #endif
