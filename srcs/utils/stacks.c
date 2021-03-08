@@ -12,7 +12,7 @@ void		stacks_destroy(t_stacks *stacks)
 		ilist_destroy(&stacks->b);
 }
 
-t_stacks	stacks_clone(t_stacks *src)
+t_stacks	stacks_clone(t_stacks const *src)
 {
 	t_stacks		clone;
 	t_ilist_element	*element;

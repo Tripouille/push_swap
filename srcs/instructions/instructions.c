@@ -23,8 +23,8 @@ void	instructions_init(t_instruction_infos instructions[])
 	instructions_set(instructions + 11, "", NULL);
 }
 
-void	instructions_call(t_instruction_infos const instructions[], char const *name,
-							t_stacks *stacks)
+void	instructions_call(t_instruction_infos const instructions[],
+							char const *name, t_stacks *stacks)
 {
 	int		i;
 
@@ -33,7 +33,6 @@ void	instructions_call(t_instruction_infos const instructions[], char const *nam
 		i++;
 	instructions[i].funtion(stacks);
 }
-
 
 bool	instructions_contain(t_instruction_infos const instructions[],
 								char *name)

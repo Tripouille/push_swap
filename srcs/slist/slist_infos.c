@@ -1,6 +1,6 @@
 #include "slist.h"
 
-size_t					slist_size(t_slist *slist)
+size_t	slist_size(t_slist const *slist)
 {
 	t_slist_element	*element;
 	size_t			size;
@@ -17,28 +17,15 @@ size_t					slist_size(t_slist *slist)
 	return (size);
 }
 
-void					slist_show(t_slist slist, bool reverse)
+void	slist_show(t_slist const slist)
 {
-	t_slist_element *element;
-	if (slist.head == NULL)
-		return ;
-	else if (reverse)
+	t_slist_element	*element;
+
+	element = slist.head;
+	while (element != slist.tail)
 	{
-		element = slist.tail;
-		while (element != slist.head)
-		{
-			printf("%s ", element->s);
-			element = element->prev;
-		}
-	}
-	else
-	{
-		element = slist.head;
-		while (element != slist.tail)
-		{
-			printf("%s ", element->s);
-			element = element->next;
-		}
+		printf("%s ", element->s);
+		element = element->next;
 	}
 	printf("%s\n", element->s);
 }

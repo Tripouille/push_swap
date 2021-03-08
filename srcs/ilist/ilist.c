@@ -1,12 +1,12 @@
 #include "ilist.h"
 
-void					ilist_initialize(t_ilist *ilist)
+void	ilist_initialize(t_ilist *ilist)
 {
 	ilist->head = NULL;
 	ilist->tail = NULL;
 }
 
-t_ilist_element			*ilist_push(t_ilist *ilist, int i)
+t_ilist_element	*ilist_push(t_ilist *ilist, int i)
 {
 	t_ilist_element	*injected_element;
 
@@ -17,7 +17,7 @@ t_ilist_element			*ilist_push(t_ilist *ilist, int i)
 	return (injected_element);
 }
 
-int						ilist_pop(t_ilist *ilist)
+int	ilist_pop(t_ilist *ilist)
 {
 	t_ilist_element	*element_to_destroy;
 	int				return_i;
@@ -39,7 +39,7 @@ int						ilist_pop(t_ilist *ilist)
 	return (return_i);
 }
 
-t_ilist_element			*ilist_unshift(t_ilist *ilist, int i)
+t_ilist_element	*ilist_unshift(t_ilist *ilist, int i)
 {
 	t_ilist_element	*injected_element;
 
@@ -50,7 +50,7 @@ t_ilist_element			*ilist_unshift(t_ilist *ilist, int i)
 	return (injected_element);
 }
 
-int						ilist_shift(t_ilist *ilist)
+int	ilist_shift(t_ilist *ilist)
 {
 	t_ilist_element	*element_to_destroy;
 	int				return_i;

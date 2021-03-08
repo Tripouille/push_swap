@@ -1,6 +1,6 @@
 #include "algorithms.h"
 
-void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *requiredInstructions, t_stacks *stacks)
+void	putSmallestOnTop(t_instruction_infos const instructions[], t_slist *requiredInstructions, t_stacks *stacks)
 {
 	t_ilist_element		 *smallest;
 	int						ra_length;
@@ -30,7 +30,7 @@ void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *requiredInstr
 	}
 }
 
-t_slist	franky_sort(t_instruction_infos instructions[], t_stacks *stacks)
+t_slist	franky_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 {
 	t_slist	requiredInstructions;
 

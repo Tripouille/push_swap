@@ -1,8 +1,8 @@
 #include "ilist.h"
 
-void ilist_swap(t_ilist *ilist)
+void	ilist_swap(t_ilist *ilist)
 {
-	t_ilist_element *old_first_element;
+	t_ilist_element	*old_first_element;
 
 	if (ilist->head == ilist->tail)
 		return ;
@@ -18,7 +18,7 @@ void ilist_swap(t_ilist *ilist)
 		ilist->tail = old_first_element;
 }
 
-void ilist_rotate(t_ilist *ilist)
+void	ilist_rotate(t_ilist *ilist)
 {
 	if (ilist->head == ilist->tail)
 		return ;
@@ -26,7 +26,7 @@ void ilist_rotate(t_ilist *ilist)
 	ilist->tail = ilist->tail->next;
 }
 
-void ilist_reverse_rotate(t_ilist *ilist)
+void	ilist_reverse_rotate(t_ilist *ilist)
 {
 	if (ilist->head == ilist->tail)
 		return ;

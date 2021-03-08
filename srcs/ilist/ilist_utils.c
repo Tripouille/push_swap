@@ -14,7 +14,7 @@ t_ilist_element	*create_ilist_element(int i, t_ilist_element *prev,
 	return (new_ilist_element);
 }
 
-t_ilist_element			*ilist_inject(t_ilist *ilist, int i)
+t_ilist_element	*ilist_inject(t_ilist *ilist, int i)
 {
 	t_ilist_element	*new_ilist_element;
 
@@ -37,10 +37,10 @@ t_ilist_element			*ilist_inject(t_ilist *ilist, int i)
 	return (new_ilist_element);
 }
 
-void					ilist_destroy(t_ilist *ilist)
+void	ilist_destroy(t_ilist *ilist)
 {
-	t_ilist_element *element;
-	t_ilist_element *element_next;
+	t_ilist_element	*element;
+	t_ilist_element	*element_next;
 
 	element = ilist->head;
 	while (element != ilist->tail)
@@ -54,10 +54,10 @@ void					ilist_destroy(t_ilist *ilist)
 	ilist->tail = NULL;
 }
 
-t_ilist_element					 *ilist_get_smallest(t_ilist *ilist)
+t_ilist_element	*ilist_get_smallest(t_ilist const *ilist)
 {
-	t_ilist_element		 *smallest;
-	t_ilist_element		 *element;
+	t_ilist_element	*smallest;
+	t_ilist_element	*element;
 
 	smallest = ilist->head;
 	element = ilist->head;
@@ -70,4 +70,17 @@ t_ilist_element					 *ilist_get_smallest(t_ilist *ilist)
 	if (smallest->i < ilist->tail->i)
 		return (smallest);
 	return (ilist->tail);
+}
+
+void	ilist_show(t_ilist ilist)
+{
+	t_ilist_element	*element;
+
+	element = ilist.head;
+	while (element != ilist.tail)
+	{
+		dprintf(2, "%i ", element->i);
+		element = element->next;
+	}
+	dprintf(2, "%i\n", element->i);
 }

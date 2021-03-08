@@ -28,7 +28,7 @@ static t_ilist_element*	get_pivot(t_ilist *a)
 	return (NULL);
 }
 
-t_slist	quick_sort(t_instruction_infos instructions[], t_stacks *stacks)
+t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 {
 	t_slist			required_instructions;
 	t_ilist_element	*pivot;
