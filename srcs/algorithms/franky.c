@@ -33,6 +33,7 @@ void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *instructionNa
 t_slist	franky_sort(t_instruction_infos instructions[], t_stacks *stacks)
 {
 	t_slist	instructionNames;
+
 	slist_initialize(&instructionNames);
 	while (!ilist_is_empty(&stacks->a))
 	{

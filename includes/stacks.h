@@ -1,7 +1,6 @@
 #ifndef STACKS_H
 # define STACKS_H
 # include "ilist.h"
-
 typedef struct s_stacks
 {
 	t_ilist		a;

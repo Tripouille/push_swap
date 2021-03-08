@@ -4,9 +4,10 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 
 PUSH_SWAP_EXECUTABLE = push_swap
-PUSH_SWAP_HEADERS = $(addprefix $(HEADERS_DIR)/, )
+PUSH_SWAP_HEADERS = $(addprefix $(HEADERS_DIR)/, algorithms.h benchmark.h)
 PUSH_SWAP_SRCS = $(addprefix $(SRCS_DIR)/, push_swap.c \
-											$(addprefix algorithms/, franky.c))
+										$(addprefix algorithms/, algorithms.c franky.c) \
+										$(addprefix benchmark/, benchmark.c))
 PUSH_SWAP_OBJS = $(PUSH_SWAP_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CHECKER_EXECUTABLE = checker
