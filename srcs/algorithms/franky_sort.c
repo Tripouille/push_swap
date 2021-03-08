@@ -1,6 +1,6 @@
 #include "algorithms.h"
 
-void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *instructionNames, t_stacks *stacks)
+void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *requiredInstructions, t_stacks *stacks)
 {
 	t_ilist_element		 *smallest;
 	int						ra_length;
@@ -24,24 +24,25 @@ void	putSmallestOnTop(t_instruction_infos instructions[], t_slist *instructionNa
 	while (stacks->a.head != smallest)
 	{
 		if (stacks->a.head->i > stacks->a.head->next->i && !ilist_is_globally_sort(&stacks->a, smallest))
-			stock_and_call(instructions, instructionNames, "sa", stacks);
+			stock_and_call(instructions, requiredInstructions, "sa", stacks);
 		else
-			stock_and_call(instructions, instructionNames, rotate, stacks);
+			stock_and_call(instructions, requiredInstructions, rotate, stacks);
 	}
 }
 
 t_slist	franky_sort(t_instruction_infos instructions[], t_stacks *stacks)
 {
-	t_slist	instructionNames;
-	slist_initialize(&instructionNames);
+	t_slist	requiredInstructions;
+
+	slist_initialize(&requiredInstructions);
 	while (!ilist_is_empty(&stacks->a))
 	{
-		putSmallestOnTop(instructions, &instructionNames, stacks);
+		putSmallestOnTop(instructions, &requiredInstructions, stacks);
 		if (ilist_is_sort(&stacks->a, false))
 			break ;
-		stock_and_call(instructions, &instructionNames, "pb", stacks);
+		stock_and_call(instructions, &requiredInstructions, "pb", stacks);
 	}
 	while (!ilist_is_empty(&stacks->b))
-		stock_and_call(instructions, &instructionNames, "pa", stacks);
-	return (instructionNames);
+		stock_and_call(instructions, &requiredInstructions, "pa", stacks);
+	return (requiredInstructions);
 }
