@@ -36,12 +36,9 @@ t_slist	quick_sort(t_instruction_infos instructions[], t_stacks *stacks)
 	slist_initialize(&requiredInstructions);
 	while (true)
 	{
-		dprintf(2, "a : "); ilist_show(stacks->a, false);
-		dprintf(2, "b : "); ilist_show(stacks->b, false);
 		pivot = get_pivot(&stacks->a);
 		if (pivot == NULL)
 		{
-			dprintf(2, "pivot is NULL\n\n");
 			if (!ilist_is_empty(&stacks->b))
 			{
 				stock_and_call(instructions, &requiredInstructions, "pa", stacks);
@@ -50,7 +47,6 @@ t_slist	quick_sort(t_instruction_infos instructions[], t_stacks *stacks)
 			else
 				break ;
 		}
-		dprintf(2, "pivot = %i\n\n", pivot->i);
 		while (pivot != stacks->a.head)
 		{
 			if (stacks->a.head->i < pivot->i)
