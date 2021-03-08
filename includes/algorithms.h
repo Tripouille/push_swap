@@ -12,5 +12,6 @@ char const	*get_best_rotate_dir(t_stacks *stacks, t_ilist_element *target);
 
 t_slist		franky_sort(t_instruction_infos instructions[], t_stacks *stacks);
 t_slist		selection_sort(t_instruction_infos instructions[], t_stacks *stacks);
+t_slist		quick_sort(t_instruction_infos instructions[], t_stacks *stacks);
 
 #endif

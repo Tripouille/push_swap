@@ -86,13 +86,16 @@ void					ilist_show(t_ilist ilist, bool reverse)
 {
 	t_ilist_element *element;
 	if (ilist.head == NULL)
+	{
+		dprintf(2, "\n");
 		return ;
+	}
 	else if (reverse)
 	{
 		element = ilist.tail;
 		while (element != ilist.head)
 		{
-			printf("%i ", element->i);
+			dprintf(2, "%i ", element->i);
 			element = element->prev;
 		}
 	}
@@ -101,9 +104,9 @@ void					ilist_show(t_ilist ilist, bool reverse)
 		element = ilist.head;
 		while (element != ilist.tail)
 		{
-			printf("%i ", element->i);
+			dprintf(2, "%i ", element->i);
 			element = element->next;
 		}
 	}
-	printf("%i\n", element->i);
+	dprintf(2, "%i\n", element->i);
 }
