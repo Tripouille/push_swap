@@ -5,7 +5,7 @@
 # include "instructions.h"
 # include "stacks.h"
 
-void		stock_and_call(t_slist *instructionNames, t_instruction_infos const instructions[],
+void		stock_and_call(t_instruction_infos const instructions[], t_slist *instructionNames,
 							char const *name, t_stacks *stacks);
 
 t_slist		franky_sort(t_instruction_infos instructions[], t_stacks *stacks);
