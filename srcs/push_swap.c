@@ -7,11 +7,12 @@ void	stock_and_call(t_slist *instructionNames, t_instruction_infos const instruc
 	instructions_call(instructions, name, &stacks->a, &stacks->b);
 }
 
-void	initialize(t_instruction_infos instructions[], t_stacks *stacks)
+static void	initialize(t_instruction_infos instructions[], t_slist *instructionNames, t_stacks *stacks)
 {
 	instructions_init(instructions);
 	ilist_initialize(&stacks->a);
 	ilist_initialize(&stacks->b);
+	slist_initialize(instructionNames);
 }
 
 int		main(int ac, char **av)
@@ -22,7 +23,7 @@ int		main(int ac, char **av)
 
 	if (ac == 1)
 		return (0);
-	initialize(instructions, &stacks);
+	initialize(instructions, &instructionNames, &stacks);
 	if (!get_numbers(av, &stacks.a))
 	{
 		ilist_destroy(&stacks.a);
