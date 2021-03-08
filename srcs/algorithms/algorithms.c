@@ -73,18 +73,17 @@ void	put_smallest_bottom_b(t_instruction_infos const instructions[],
 void	rotate_and_push_finish(t_instruction_infos const instructions[],
 							t_slist *required_instructions, t_stacks *stacks)
 {
-	int				ra_length_in_a;
-	int				ra_length_in_b;
+	int				ra_length;
+	int				rb_length;
 	t_ilist_element	*smallest_in_a;
 	t_ilist_element	*smallest_in_b;
 	
 	smallest_in_a = ilist_get_smallest(&stacks->a);
 	smallest_in_b = ilist_get_smallest(&stacks->b);
-	ra_length_in_a = get_r_length(&stacks->a, smallest_in_a);
-	ra_length_in_b = get_r_length(&stacks->b, smallest_in_b->next);
-	if (ft_max(ra_length_in_a, ra_length_in_b) < ft_max(ilist_size(&stacks->a)
-	- ra_length_in_a, ilist_size(&stacks->b) - ra_length_in_b))
-		//rotate_both_lists(instructions, required_instructions, stacks, smallest_in_a, smallest_in_b);
+	ra_length = get_r_length(&stacks->a, smallest_in_a);
+	rb_length = get_r_length(&stacks->b, smallest_in_b->next);
+	if (ft_max(ra_length, rb_length) < ft_max(ilist_size(&stacks->a)
+	- ra_length, ilist_size(&stacks->b) - rb_length)) //prendre aussi le cas min(2 sens opposés)
 	{
 		while (stacks->a.head != smallest_in_a && stacks->b.head != smallest_in_b)
 			stock_and_call(instructions, required_instructions, "rr", stacks);
