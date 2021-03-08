@@ -5,15 +5,20 @@
 # include "stacks.h"
 # include "algorithms.h"
 
+typedef t_slist	(*t_algorithm)(t_instruction_infos const instructions[],
+	t_stacks *stacks);
 
-typedef t_slist (*algorithm)(t_instruction_infos instructions[], t_stacks *stacks);
-
-typedef struct	s_benchmark
+typedef struct s_benchmark
 {
-	algorithm		algo;
+	char const		*name;
+	t_algorithm		algo;
 	t_slist			required_instructions;
 }				t_benchmark;
 
-void	print_best_algo(t_instruction_infos instructions[], t_stacks *stacks);
+void				print_best_algo(t_instruction_infos const instructions[],
+						t_stacks const *stacks);
+
+t_benchmark const	*get_best_benchmark(t_benchmark const benchmark[]);
+void				benchmark_show(t_benchmark const benchmark[]);
 
 #endif

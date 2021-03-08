@@ -9,6 +9,6 @@ typedef struct s_stacks
 
 void		stacks_init(t_stacks *stacks);
 void		stacks_destroy(t_stacks *stacks);
-t_stacks	stacks_clone(t_stacks *src);
+t_stacks	stacks_clone(t_stacks const *src);
 
 #endif

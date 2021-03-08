@@ -1,12 +1,12 @@
 #include "slist.h"
 
-void					slist_initialize(t_slist *slist)
+void	slist_initialize(t_slist *slist)
 {
 	slist->head = NULL;
 	slist->tail = NULL;
 }
 
-t_slist_element			*slist_push(t_slist *slist, char const *s)
+t_slist_element	*slist_push(t_slist *slist, char const *s)
 {
 	t_slist_element	*injected_element;
 
@@ -17,7 +17,7 @@ t_slist_element			*slist_push(t_slist *slist, char const *s)
 	return (injected_element);
 }
 
-void						slist_pop(t_slist *slist)
+void	slist_pop(t_slist *slist)
 {
 	t_slist_element	*element_to_destroy;
 
@@ -36,7 +36,7 @@ void						slist_pop(t_slist *slist)
 	free(element_to_destroy);
 }
 
-t_slist_element			*slist_unshift(t_slist *slist, char const *s)
+t_slist_element	*slist_unshift(t_slist *slist, char const *s)
 {
 	t_slist_element	*injected_element;
 
@@ -47,7 +47,7 @@ t_slist_element			*slist_unshift(t_slist *slist, char const *s)
 	return (injected_element);
 }
 
-void						slist_shift(t_slist *slist)
+void	slist_shift(t_slist *slist)
 {
 	t_slist_element	*element_to_destroy;
 

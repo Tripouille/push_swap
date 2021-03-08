@@ -18,7 +18,7 @@ t_slist_element	*create_slist_element(char const *s, t_slist_element *prev,
 	return (new_slist_element);
 }
 
-t_slist_element			*slist_inject(t_slist *slist, char const *s)
+t_slist_element	*slist_inject(t_slist *slist, char const *s)
 {
 	t_slist_element	*new_slist_element;
 
@@ -41,10 +41,10 @@ t_slist_element			*slist_inject(t_slist *slist, char const *s)
 	return (new_slist_element);
 }
 
-void					slist_destroy(t_slist *slist)
+void	slist_destroy(t_slist *slist)
 {
-	t_slist_element *element;
-	t_slist_element *element_next;
+	t_slist_element	*element;
+	t_slist_element	*element_next;
 
 	element = slist->head;
 	while (element != slist->tail)
