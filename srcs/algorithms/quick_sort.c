@@ -51,13 +51,14 @@ t_slist	quick_sort(t_instruction_infos instructions[], t_stacks *stacks)
 				break ;
 		}
 		dprintf(2, "pivot = %i\n\n", pivot->i);
-		while (pivot->prev != stacks->a.tail)
+		while (pivot != stacks->a.head)
 		{
 			if (stacks->a.head->i < pivot->i)
 				stock_and_call(instructions, &requiredInstructions, "pb", stacks);
-			//else if (ilist_is_globally_sort(&stacks->a, ilist_get_smallest(&stacks->a))
-			//&& ilist_)
-			//	stock_and_call(instructions, &requiredInstructions, "rra", stacks);
+			else if (ilist_is_globally_sort(&stacks->a, ilist_get_smallest(&stacks->a))
+			&& ft_strcmp(get_best_rotate_dir(stacks, pivot), "rra") == 0)
+				while (pivot != stacks->a.head)
+					stock_and_call(instructions, &requiredInstructions, "rra", stacks);
 			else
 				stock_and_call(instructions, &requiredInstructions, "ra", stacks);
 		}
