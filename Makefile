@@ -25,7 +25,7 @@ UTILS_SRCS = $(addprefix $(SRCS_DIR)/,	$(addprefix utils/, utils.c utils_numbers
 UTILS_OBJS = $(UTILS_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(HEADERS_DIR) #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(HEADERS_DIR) -g3 -fsanitize=address
 RM = rm -rf
 
 #RULES#

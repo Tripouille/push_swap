@@ -3,16 +3,11 @@
 t_slist			selection_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 {
 	t_slist					required_ins;
-	t_ilist_element			*smallest;
-	char const 				*rotate_dir;
 
 	slist_initialize(&required_ins);
 	while (!ilist_is_empty(&stacks->a))
 	{
-		smallest = ilist_get_smallest(&stacks->a);
-		rotate_dir = get_best_rotate_dir(stacks, smallest);
-		while (stacks->a.head != smallest)
-			stock_and_call(instructions, &required_ins, rotate_dir, stacks);
+		put_smallest_top_a(instructions, &required_ins, stacks);
 		if (ilist_is_sort(&stacks->a, false))
 			break ;
 		stock_and_call(instructions, &required_ins, "pb", stacks);

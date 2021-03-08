@@ -1,26 +1,13 @@
 #include "algorithms.h"
 
-void	putSmallestOnTop(t_instruction_infos const instructions[], t_slist *requiredInstructions, t_stacks *stacks)
+static void	putSmallestOnTopAndSwap(t_instruction_infos const instructions[],
+							t_slist *requiredInstructions, t_stacks *stacks)
 {
-	t_ilist_element		 *smallest;
-	int						ra_length;
-	int						rra_length;
-	char const				*rotate;
-	t_ilist_element		 *element;
+	t_ilist_element		*smallest;
+	char const			*rotate;
 
 	smallest = ilist_get_smallest(&stacks->a);
-	element = stacks->a.head;
-	ra_length = 0;
-	while (element != smallest)
-	{
-		element = element->next;
-		ra_length += 1;
-	}
-	rra_length = ilist_size(&stacks->a) - ra_length;
-	if (ra_length <= rra_length)
-		rotate = "ra";
-	else
-		rotate = "rra";
+	rotate = get_rotate_dir_a(&stacks->a, smallest);
 	while (stacks->a.head != smallest)
 	{
 		if (stacks->a.head->i > stacks->a.head->next->i && !ilist_is_globally_sort(&stacks->a, smallest))
@@ -37,7 +24,7 @@ t_slist	franky_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	slist_initialize(&requiredInstructions);
 	while (!ilist_is_empty(&stacks->a))
 	{
-		putSmallestOnTop(instructions, &requiredInstructions, stacks);
+		putSmallestOnTopAndSwap(instructions, &requiredInstructions, stacks);
 		if (ilist_is_sort(&stacks->a, false))
 			break ;
 		stock_and_call(instructions, &requiredInstructions, "pb", stacks);

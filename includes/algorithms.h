@@ -7,8 +7,10 @@
 
 void		stock_and_call(t_instruction_infos const instructions[], t_slist *required_instructions,
 							char const *name, t_stacks *stacks);
-char const	*get_best_rotate_dir(t_stacks *stacks, t_ilist_element *target);
-void		push_a_in_order(t_instruction_infos const instructions[],
+char const	*get_rotate_dir_a(t_ilist *ilist, t_ilist_element *target);
+void		put_smallest_top_a(t_instruction_infos const instructions[],
+							t_slist *required_instructions, t_stacks *stacks);
+void		finish_sorting_ordered_stacks(t_instruction_infos const instructions[],
 						t_slist *required_instructions, t_stacks *stacks);
 
 

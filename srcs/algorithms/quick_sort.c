@@ -52,14 +52,14 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 			if (stacks->a.head->i < pivot->i)
 				stock_and_call(instructions, &required_instructions, "pb", stacks);
 			else if (ilist_is_globally_sort2(&stacks->a)
-			&& ft_strcmp(get_best_rotate_dir(stacks, pivot), "rra") == 0)
+			&& ft_strcmp(get_rotate_dir_a(&stacks->a, pivot), "rra") == 0)
 				while (pivot != stacks->a.head)
 					stock_and_call(instructions, &required_instructions, "rra", stacks);
 			else
 				stock_and_call(instructions, &required_instructions, "ra", stacks);
 			if (ilist_is_globally_sort2(&stacks->a) && ilist_is_globally_sort2(&stacks->b))
 			{
-				push_a_in_order(instructions, &required_instructions, stacks);
+				finish_sorting_ordered_stacks(instructions, &required_instructions, stacks);
 				return (required_instructions);
 			}
 		}
