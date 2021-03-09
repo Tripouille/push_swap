@@ -34,6 +34,8 @@ static bool	elements_are_greater(t_ilist *a, t_ilist *b)
 	t_ilist_element	*b_element;
 	bool			checked_head;
 
+	if (a->head == a->tail || b->head == b->tail)
+		return (true);
 	checked_head = false;
 	a_element = a->head;
 	while (a_element != a->head || !checked_head)
