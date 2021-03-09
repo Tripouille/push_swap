@@ -79,9 +79,10 @@ int	main(int argc, char **argv)
 		destroy_lists(&stacks, &instructionNames);
 		errorExit();
 	}
+	//dprintf(2, "debug : list before execute : "); ilist_show(&stacks.a, ' ');
 	execute(&instructionNames, instructions, &stacks);
 	printResult(&stacks);
-	//printf("debug : list after execute : "); ilist_show(stacks.a, false);
+	//dprintf(2, "debug : list after execute : "); ilist_show(&stacks.a, ' ');
 	destroy_lists(&stacks, &instructionNames);
 	return (0);
 }
