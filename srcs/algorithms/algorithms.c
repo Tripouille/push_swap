@@ -89,7 +89,7 @@ void	rotate_and_push_finish(t_instruction_infos const instructions[],
 			stock_and_call(instructions, required_instructions, "rr", stacks);
 		while (stacks->a.head != smallest_in_a)
 			stock_and_call(instructions, required_instructions, "ra", stacks);
-		while (stacks->b.head != smallest_in_b->next)
+		while (stacks->b.tail != smallest_in_b)
 			stock_and_call(instructions, required_instructions, "rb", stacks);
 	}
 	else
@@ -98,9 +98,8 @@ void	rotate_and_push_finish(t_instruction_infos const instructions[],
 			stock_and_call(instructions, required_instructions, "rrr", stacks);
 		while (stacks->a.head != smallest_in_a)
 			stock_and_call(instructions, required_instructions, "rra", stacks);
-		while (stacks->b.head != smallest_in_b->next)
+		while (stacks->b.tail != smallest_in_b)
 			stock_and_call(instructions, required_instructions, "rrb", stacks);
-
 	}
 	while (!ilist_is_empty(&stacks->b))
 		stock_and_call(instructions, required_instructions, "pa", stacks);
