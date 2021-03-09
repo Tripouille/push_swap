@@ -16,7 +16,7 @@ def doTests(numberLimit)
     50.times do
         numbers = getRandomNumber(numberLimit)
         instructions = `#{'./push_swap ' + numbers}`
-        command = 'echo -n \'' + instructions + '\' | ./checker ' + numbers;
+        command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
         if `#{command}`[0..1] == 'KO' then puts "failure".center(10).red; return end
         results << instructions.split("\n").size
     end

@@ -28,7 +28,7 @@ char const	*get_rotate_dir_a(t_ilist *ilist, t_ilist_element *target)
 	int						rra_length;
 
 	ra_length = get_r_length(ilist, target);
-	rra_length = ilist_size(ilist) - ra_length;
+	rra_length = ilist->size - ra_length;
 	if (ra_length <= rra_length)
 		return ("ra");
 	return ("rra");
@@ -40,7 +40,7 @@ char const	*get_rotate_dir_b(t_ilist *ilist, t_ilist_element *target)
 	int						rrb_length;
 
 	rb_length = get_r_length(ilist, target);
-	rrb_length = ilist_size(ilist) - rb_length;
+	rrb_length = ilist->size - rb_length;
 	if (rb_length <= rrb_length)
 		return ("rb");
 	return ("rrb");
@@ -82,8 +82,7 @@ void	rotate_and_push_finish(t_instruction_infos const instructions[],
 	smallest_in_b = ilist_get_smallest(&stacks->b);
 	ra_length = get_r_length(&stacks->a, smallest_in_a);
 	rb_length = get_r_length(&stacks->b, smallest_in_b->next);
-	if (ft_max(ra_length, rb_length) < ft_max(ilist_size(&stacks->a)
-	- ra_length, ilist_size(&stacks->b) - rb_length)) //prendre aussi le cas min(2 sens opposés)
+	if (ft_max(ra_length, rb_length) < ft_max(stacks->a.size - ra_length, stacks->b.size - rb_length)) //prendre aussi le cas min(2 sens opposés)
 	{
 		while (stacks->a.head != smallest_in_a && stacks->b.head != smallest_in_b)
 			stock_and_call(instructions, required_instructions, "rr", stacks);

@@ -16,6 +16,7 @@ typedef struct s_ilist
 {
 	t_ilist_element		*head;
 	t_ilist_element		*tail;
+	size_t				size;
 }				t_ilist;
 
 t_ilist_element			*create_ilist_element(int i, t_ilist_element *prev,
@@ -40,7 +41,6 @@ bool					ilist_is_globally_sort(t_ilist *ilist,
 							t_ilist_element *smallest);
 bool					ilist_is_globally_sort2(t_ilist *ilist, bool reverse);
 bool					ilist_contain(t_ilist *ilist, int needle);
-size_t					ilist_size(t_ilist *ilist);
 bool					ilist_is_empty(t_ilist *ilist);
 
 #endif
