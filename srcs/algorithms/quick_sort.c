@@ -32,15 +32,15 @@ static bool	elements_are_greater(t_ilist *a, t_ilist *b)
 {
 	t_ilist_element	*a_element;
 	t_ilist_element	*b_element;
-	bool			checked_head;
+	bool			head_was_checked;
 
 	if (ilist_is_empty(a) || ilist_is_empty(b))
 		return (true);
-	checked_head = false;
+	head_was_checked = false;
 	a_element = a->head;
-	while (a_element != a->head || !checked_head)
+	while (a_element != a->head || !head_was_checked)
 	{
-		checked_head = true;
+		head_was_checked = true;
 		b_element = b->head;
 		while (b_element != b->tail)
 		{
@@ -63,6 +63,7 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	slist_initialize(&required_instructions);
 	while (true)
 	{
+		//ilist_show(&stacks->a, ' ');
 		pivot = get_pivot(&stacks->a);
 		if (pivot == NULL)
 		{
@@ -78,7 +79,11 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 		while (pivot != stacks->a.head)
 		{
 			if (stacks->a.head->i < pivot->i)
+			{
+				if (ilist_is_globally_sort2(&stacks->a, false))
+					break ;
 				stock_and_call(instructions, &required_instructions, "pb", stacks);
+			}
 			else if (ilist_is_globally_sort2(&stacks->a, false)
 			&& ft_strcmp(get_rotate_dir_a(&stacks->a, pivot), "rra") == 0)
 				while (pivot != stacks->a.head)
