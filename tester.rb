@@ -7,18 +7,18 @@ end
 
 def getRandomNumber(n)
     numbers = Set.new
-    while numbers.size < n do numbers << rand(100).to_s end
+    while numbers.size < n do numbers << rand(1000000).to_s end
     numbers.to_a.join(' ')
 end
 
 def doTests(numberLimit)
     results = []
-    1.times do
+    50.times do
         numbers = getRandomNumber(numberLimit)
 		#puts numbers
         instructions = `#{'./push_swap ' + numbers}`
-        command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
-        if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
+        #command = 'echo -n \'' + instructions + '\' | ./checker ' + numbers;
+        #if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
         results << instructions.split("\n").size
     end
     print "#{results.min}".center(10).green, "#{results.max}".center(10).red, "#{results.reduce(:+).fdiv(results.size)}".center(10).blue; puts
