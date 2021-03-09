@@ -15,6 +15,7 @@ def doTests(numberLimit)
     results = []
     10.times do
         numbers = getRandomNumber(numberLimit)
+		#puts numbers
         instructions = `#{'./push_swap ' + numbers}`
         command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
         if `#{command}`[0..1] == 'KO' then puts "failure".center(10).red; return end
@@ -25,5 +26,6 @@ end
 
 print "TEST".center(30), "LOWEST".center(10), "BIGGEST".center(10), "AVERAGE".center(10); puts
 print "Simple 5 random values".center(30); doTests(5)
+#print "Perso 8 random values".center(30); doTests(8)
 print "Middle 100 random values".center(30); doTests(100)
 print "Advanced 500 random values".center(30); doTests(500)
