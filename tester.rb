@@ -13,7 +13,7 @@ end
 
 def doTests(numberLimit)
     results = []
-    50.times do
+    10.times do
         numbers = getRandomNumber(numberLimit)
         instructions = `#{'./push_swap ' + numbers}`
         command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;

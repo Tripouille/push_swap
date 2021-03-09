@@ -1,5 +1,14 @@
 #include "benchmark.h"
 
+static void	benchmark_destroy(t_benchmark benchmark[])
+{
+	int						i;
+
+	i = -1;
+	while (benchmark[++i].algo != NULL)
+		slist_destroy(&benchmark[i].required_instructions);
+}
+
 static void	benchmark_set(t_benchmark benchmark[], size_t pos,
 							char const *name, t_algorithm algo)
 {
@@ -11,10 +20,10 @@ static void	benchmark_init(t_benchmark benchmark[])
 {
 	benchmark_set(benchmark, 0, "selection_sort", &selection_sort);
 	benchmark_set(benchmark, 1, "quick_sort", &quick_sort);
-	benchmark_set(benchmark, 1, "", NULL);
+	benchmark_set(benchmark, 2, "", NULL);
 }
 
-static void	benchmark_launch(t_instruction_infos const instructions[],
+static bool	benchmark_launch(t_instruction_infos const instructions[],
 								t_stacks const *stacks, t_benchmark benchmark[])
 {
 	int						i;
@@ -24,19 +33,16 @@ static void	benchmark_launch(t_instruction_infos const instructions[],
 	while (benchmark[++i].algo != NULL)
 	{
 		stacks_copy = stacks_clone(stacks);
+		if (stacks_copy.a.head == NULL)
+		{
+			benchmark_destroy(benchmark);
+			return (false);
+		}
 		benchmark[i].required_instructions
 			= benchmark[i].algo(instructions, &stacks_copy);
 		stacks_destroy(&stacks_copy);
 	}
-}
-
-static void	benchmark_destroy(t_benchmark benchmark[])
-{
-	int						i;
-
-	i = -1;
-	while (benchmark[++i].algo != NULL)
-		slist_destroy(&benchmark[i].required_instructions);
+	return (true);
 }
 
 void	print_best_algo(t_instruction_infos const instructions[],
@@ -47,7 +53,8 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	if (ilist_is_sort(&stacks->a, false))
 		return ;
 	benchmark_init(benchmark);
-	benchmark_launch(instructions, stacks, benchmark);
+	if (!benchmark_launch(instructions, stacks, benchmark))
+		return ;
 	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
 	//benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
