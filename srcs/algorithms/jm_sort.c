@@ -40,6 +40,7 @@ bool	put_closest_in_range_on_b(t_instruction_infos const instructions[], t_stack
 {
 	ssize_t				r_length;
 	ssize_t				rr_length;
+    t_ilist_element     *target;
 
 	r_length = required_rotate_distance_to_number_in_range(stacks, false, range[0], range[1]);
 	if (r_length == -1)
@@ -66,8 +67,8 @@ bool	put_closest_in_range_on_b(t_instruction_infos const instructions[], t_stack
     }
     else
     {
-        while (!(stacks->a.head->i > stacks->b.head->i && stacks->a.head->i < stacks->b.tail->i))
-            stock_and_call(instructions, required_instructions, "rb", stacks);
+        target = get_biggest_below(&stacks->b, stacks->a.head->i);
+        put_target_on_top_b(instructions, required_instructions, stacks, target);
         stock_and_call(instructions, required_instructions, "pb", stacks);
     }
 	return (true);
@@ -85,11 +86,11 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	lowest = ilist_get_smallest(&stacks->a)->i;
 	biggest = ilist_get_biggest(&stacks->a)->i;
 	delta = biggest - lowest;
-	double step = delta / 10.0;
+	double step = delta / (stacks->a.size / 5.0);
 
     //printf("delta = %i\n", delta);
 	int i = 0;
-	while (i < 10)
+	while (i * step < delta)
 	{
 		range[0] = lowest + step * i;
 		range[1] = lowest + step * (i + 1);

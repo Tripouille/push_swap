@@ -7,7 +7,7 @@ end
 
 def getRandomNumber(n)
     numbers = Set.new
-    while numbers.size < n do numbers << rand(100).to_s end
+    while numbers.size < n do numbers << rand(10000).to_s end
     numbers.to_a.join(' ')
 end
 
@@ -17,15 +17,16 @@ def doTests(numberLimit)
         numbers = getRandomNumber(numberLimit)
 		#puts numbers
         instructions = `#{'./push_swap ' + numbers}`
-        command = 'echo -n \'' + instructions + '\' | ./checker ' + numbers;
-        if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
+        #command = 'echo -n \'' + instructions + '\' | ./checker ' + numbers;
+        #if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
         results << instructions.split("\n").size
     end
     print "#{results.min}".center(10).green, "#{results.max}".center(10).red, "#{results.reduce(:+).fdiv(results.size)}".center(10).blue; puts
 end
 
 print "TEST".center(30), "LOWEST".center(10), "BIGGEST".center(10), "AVERAGE".center(10); puts
-print "Simple 5 random values".center(30); doTests(5)
+#print "Simple 5 random values".center(30); doTests(5)
 #print "Perso 8 random values".center(30); doTests(8)
-print "Middle 100 random values".center(30); doTests(100)
-#print "Advanced 500 random values".center(30); doTests(500)
+#print "Middle 100 random values".center(30); doTests(100)
+print "Advanced 500 random values".center(30); doTests(500)
+#print "Exterme 1000 random values".center(30); doTests(1000)

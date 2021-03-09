@@ -46,6 +46,28 @@ char const	*get_rotate_dir_b(t_ilist *ilist, t_ilist_element *target)
 	return ("rrb");
 }
 
+t_ilist_element	*get_biggest_below(t_ilist *ilist, int value)
+{
+	t_ilist_element		*element;
+	t_ilist_element		*result;
+
+	if (ilist->head == NULL)
+		return (NULL);
+	result = NULL;
+	element = ilist->head;
+	while (element != ilist->tail)
+	{
+		if (element->i < value &&
+		(result == NULL || element->i > result->i))
+			result = element;
+		element = element->next;
+	}
+	if (element->i < value &&
+	(result == NULL || element->i > result->i))
+		result = element;
+	return (result);
+}
+
 void	put_smallest_top_a(t_instruction_infos const instructions[],
 							t_slist *required_instructions, t_stacks *stacks)
 {
@@ -67,6 +89,17 @@ void	put_smallest_top_b(t_instruction_infos const instructions[],
 	smallest = ilist_get_smallest(&stacks->b);
 	rotate = get_rotate_dir_b(&stacks->b, smallest);
 	while (stacks->b.head != smallest)
+		stock_and_call(instructions, required_instructions, rotate, stacks);
+}
+
+void	put_target_on_top_b(t_instruction_infos const instructions[],
+							t_slist *required_instructions, t_stacks *stacks,
+							t_ilist_element *target)
+{
+	char const			*rotate;
+
+	rotate = get_rotate_dir_b(&stacks->b, target);
+	while (stacks->b.head != target)
 		stock_and_call(instructions, required_instructions, rotate, stacks);
 }
 

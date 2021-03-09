@@ -8,6 +8,10 @@
 void		stock_and_call(t_instruction_infos const instructions[], t_slist *required_instructions,
 							char const *name, t_stacks *stacks);
 char const	*get_rotate_dir_a(t_ilist *ilist, t_ilist_element *target);
+t_ilist_element	*get_biggest_below(t_ilist *ilist, int value);
+void	    put_target_on_top_b(t_instruction_infos const instructions[],
+							t_slist *required_instructions, t_stacks *stacks,
+							t_ilist_element *target);
 void		put_smallest_top_a(t_instruction_infos const instructions[],
 							t_slist *required_instructions, t_stacks *stacks);
 void	    put_smallest_top_b(t_instruction_infos const instructions[],
