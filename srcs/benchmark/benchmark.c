@@ -11,7 +11,7 @@ static void	benchmark_init(t_benchmark benchmark[])
 {
 	benchmark_set(benchmark, 0, "selection_sort", &selection_sort);
 	benchmark_set(benchmark, 1, "quick_sort", &quick_sort);
-	benchmark_set(benchmark, 1, "", NULL);
+	benchmark_set(benchmark, 2, "", NULL);
 }
 
 static void	benchmark_launch(t_instruction_infos const instructions[],

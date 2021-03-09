@@ -8,7 +8,7 @@ static void	initialize(t_instruction_infos instructions[], t_stacks *stacks)
 
 int		main(int ac, char **av)
 {
-	t_instruction_infos	 instructions[12];
+	t_instruction_infos	instructions[12];
 	t_stacks				stacks;
 
 	if (ac == 1)

@@ -7,7 +7,7 @@ end
 
 def getRandomNumber(n)
     numbers = Set.new
-    while numbers.size < n do numbers << rand(42000000).to_s end
+    while numbers.size < n do numbers << rand(100).to_s end
     numbers.to_a.join(' ')
 end
 
