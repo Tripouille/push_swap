@@ -17,7 +17,7 @@ def doTests(numberLimit)
         numbers = getRandomNumber(numberLimit)
         instructions = `#{'./push_swap ' + numbers}`
         command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
-        if `#{command}`[0..1] == 'KO' then puts "failure".center(10).red; return end
+        if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
         results << instructions.split("\n").size
     end
     print "#{results.min}".center(10).green, "#{results.max}".center(10).red, "#{results.reduce(:+).fdiv(results.size)}".center(10).blue; puts

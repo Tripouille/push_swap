@@ -52,24 +52,6 @@ void	ilist_destroy(t_ilist *ilist)
 	ilist->tail = NULL;
 }
 
-t_ilist_element	*ilist_get_smallest(t_ilist const *ilist)
-{
-	t_ilist_element	*smallest;
-	t_ilist_element	*element;
-
-	smallest = ilist->head;
-	element = ilist->head;
-	while (element != ilist->tail)
-	{
-		if (element->i < smallest->i)
-			smallest = element;
-		element = element->next;
-	}
-	if (smallest->i < ilist->tail->i)
-		return (smallest);
-	return (ilist->tail);
-}
-
 void	ilist_show(t_ilist const *ilist, char sep)
 {
 	t_ilist_element	*element;
@@ -80,5 +62,6 @@ void	ilist_show(t_ilist const *ilist, char sep)
 		dprintf(2, "%i%c", element->i, sep);
 		element = element->next;
 	}
-	dprintf(2, "%i\n", element->i);
+	if (element != NULL)
+		dprintf(2, "%i\n", element->i);
 }

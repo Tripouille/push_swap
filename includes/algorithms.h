@@ -17,5 +17,7 @@ void		finish_sorting_ordered_stacks(t_instruction_infos const instructions[],
 t_slist		franky_sort(t_instruction_infos const instructions[], t_stacks *stacks);
 t_slist		selection_sort(t_instruction_infos const instructions[], t_stacks *stacks);
 t_slist		quick_sort(t_instruction_infos const instructions[], t_stacks *stacks);
+t_slist		jm_sort(t_instruction_infos const instructions[], t_stacks *stacks);
+
 
 #endif
