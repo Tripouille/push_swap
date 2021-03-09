@@ -24,8 +24,6 @@ int	ilist_pop(t_ilist *ilist)
 	int				return_i;
 
 	element_to_destroy = ilist->tail;
-	if (ilist->tail != NULL)
-		ilist->size -= 1;
 	if (ilist->head == ilist->tail)
 	{
 		ilist->head = NULL;
@@ -39,6 +37,7 @@ int	ilist_pop(t_ilist *ilist)
 	}
 	return_i = element_to_destroy->i;
 	free(element_to_destroy);
+	ilist->size -= 1;
 	return (return_i);
 }
 
@@ -59,8 +58,6 @@ int	ilist_shift(t_ilist *ilist)
 	int				return_i;
 
 	element_to_destroy = ilist->head;
-	if (ilist->head != NULL)
-		ilist->size -= 1;
 	if (ilist->head == ilist->tail)
 	{
 		ilist->head = NULL;
@@ -74,5 +71,6 @@ int	ilist_shift(t_ilist *ilist)
 	}
 	return_i = element_to_destroy->i;
 	free(element_to_destroy);
+	ilist->size -= 1;
 	return (return_i);
 }
