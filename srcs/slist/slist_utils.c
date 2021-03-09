@@ -28,16 +28,14 @@ t_slist_element	*slist_inject(t_slist *slist, char const *s)
 		slist_destroy(slist);
 		return (NULL);
 	}
-	else if (slist->head == NULL)
+	if (slist->head == NULL)
 	{
 		slist->head = new_slist_element;
 		slist->tail = new_slist_element;
 	}
-	else
-	{
-		slist->tail->next = new_slist_element;
-		slist->head->prev = new_slist_element;
-	}
+	slist->tail->next = new_slist_element;
+	slist->head->prev = new_slist_element;
+	slist->size += 1;
 	return (new_slist_element);
 }
 

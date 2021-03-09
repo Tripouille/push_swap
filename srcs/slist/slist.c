@@ -4,6 +4,7 @@ void	slist_initialize(t_slist *slist)
 {
 	slist->head = NULL;
 	slist->tail = NULL;
+	slist->size = 0;
 }
 
 t_slist_element	*slist_push(t_slist *slist, char const *s)
@@ -22,6 +23,8 @@ void	slist_pop(t_slist *slist)
 	t_slist_element	*element_to_destroy;
 
 	element_to_destroy = slist->tail;
+	if (slist->tail != NULL)
+		slist->size -= 1;
 	if (slist->head == slist->tail)
 	{
 		slist->head = NULL;
@@ -52,6 +55,8 @@ void	slist_shift(t_slist *slist)
 	t_slist_element	*element_to_destroy;
 
 	element_to_destroy = slist->head;
+	if (slist->head != NULL)
+		slist->size -= 1;
 	if (slist->head == slist->tail)
 	{
 		slist->head = NULL;

@@ -9,10 +9,10 @@ t_benchmark const	*get_best_benchmark(t_benchmark const benchmark[])
 
 	i = 0;
 	best_benchmark = benchmark;
-	lowest_size = slist_size(&benchmark[0].required_instructions);
+	lowest_size = benchmark[0].required_instructions.size;
 	while (benchmark[++i].algo != NULL)
 	{
-		actual_size = slist_size(&benchmark[i].required_instructions);
+		actual_size = benchmark[i].required_instructions.size;
 		if (actual_size < lowest_size)
 		{
 			lowest_size = actual_size;
@@ -29,6 +29,6 @@ void	benchmark_show(t_benchmark const benchmark[])
 	i = -1;
 	while (benchmark[++i].algo != NULL)
 		dprintf(2, "[%s %lu] ", benchmark[i].name,
-			slist_size(&benchmark[i].required_instructions));
+			benchmark[i].required_instructions.size);
 	dprintf(2, "\n");
 }

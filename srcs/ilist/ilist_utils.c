@@ -24,16 +24,14 @@ t_ilist_element	*ilist_inject(t_ilist *ilist, int i)
 		ilist_destroy(ilist);
 		return (NULL);
 	}
-	else if (ilist->head == NULL)
+	if (ilist->head == NULL)
 	{
 		ilist->head = new_ilist_element;
 		ilist->tail = new_ilist_element;
 	}
-	else
-	{
-		ilist->tail->next = new_ilist_element;
-		ilist->head->prev = new_ilist_element;
-	}
+	ilist->tail->next = new_ilist_element;
+	ilist->head->prev = new_ilist_element;
+	ilist->size += 1;
 	return (new_ilist_element);
 }
 

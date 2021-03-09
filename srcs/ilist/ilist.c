@@ -4,6 +4,7 @@ void	ilist_initialize(t_ilist *ilist)
 {
 	ilist->head = NULL;
 	ilist->tail = NULL;
+	ilist->size = 0;
 }
 
 t_ilist_element	*ilist_push(t_ilist *ilist, int i)
@@ -23,6 +24,8 @@ int	ilist_pop(t_ilist *ilist)
 	int				return_i;
 
 	element_to_destroy = ilist->tail;
+	if (ilist->tail != NULL)
+		ilist->size -= 1;
 	if (ilist->head == ilist->tail)
 	{
 		ilist->head = NULL;
@@ -56,6 +59,8 @@ int	ilist_shift(t_ilist *ilist)
 	int				return_i;
 
 	element_to_destroy = ilist->head;
+	if (ilist->head != NULL)
+		ilist->size -= 1;
 	if (ilist->head == ilist->tail)
 	{
 		ilist->head = NULL;

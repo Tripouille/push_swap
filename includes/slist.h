@@ -16,6 +16,7 @@ typedef struct s_slist
 {
 	t_slist_element		*head;
 	t_slist_element		*tail;
+	size_t				size;
 }				t_slist;
 
 t_slist_element			*create_slist_element(char const *s,
@@ -29,7 +30,6 @@ void					slist_pop(t_slist *slist);
 t_slist_element			*slist_unshift(t_slist *slist, char const *s);
 void					slist_shift(t_slist *slist);
 
-size_t					slist_size(t_slist const *slist);
 void					slist_show(t_slist const *slist, char sep);
 
 #endif
