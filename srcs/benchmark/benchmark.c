@@ -43,6 +43,11 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 		benchmark[i].required_instructions
 			= benchmark[i].algo(instructions, &stacks_copy);
 		stacks_destroy(&stacks_copy);
+        if (benchmark[i].required_instructions.size == 0)
+		{
+			benchmark_destroy(benchmark);
+			return (false);
+		}
 	}
 	return (true);
 }

@@ -74,9 +74,10 @@ bool	put_closest_in_range_on_b(t_instruction_infos const instructions[], t_stack
 	return (true);
 }
 
-t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
+
+static t_slist sort(t_instruction_infos const instructions[], t_stacks *stacks, double segment)
 {
-	t_slist			required_instructions;
+    t_slist			required_instructions;
 	int				lowest;
 	int				biggest;
 	int				delta;
@@ -86,7 +87,7 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	lowest = ilist_get_smallest(&stacks->a)->i;
 	biggest = ilist_get_biggest(&stacks->a)->i;
 	delta = biggest - lowest;
-	double step = delta / (stacks->a.size / 15);
+	double step = delta / segment;
 
 	int i = 0;
 	while (i * step < delta)
@@ -103,4 +104,29 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 		++i;
 	}
 	return (required_instructions);
+}
+
+
+t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
+{
+    t_stacks        stacks_copy;
+    t_slist         best_result;
+    t_slist         actual_result;
+    size_t          segment;
+
+    slist_initialize(&best_result);
+	segment = 0;
+    while (++segment <= stacks->a.size)
+	{
+		stacks_copy = stacks_clone(stacks);
+		if (stacks_copy.a.head == NULL)
+			return (*slist_destroy(&best_result));
+		actual_result = sort(instructions, &stacks_copy, segment);
+		if (best_result.size == 0 || actual_result.size < best_result.size)
+			*slist_destroy(&best_result) = actual_result;
+		else
+			slist_destroy(&actual_result);
+        stacks_destroy(&stacks_copy);
+	}
+    return (best_result);
 }

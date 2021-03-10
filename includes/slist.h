@@ -22,7 +22,7 @@ typedef struct s_slist
 t_slist_element			*create_slist_element(char const *s,
 							t_slist_element *prev, t_slist_element *next);
 t_slist_element			*slist_inject(t_slist *slist, char const *s);
-void					slist_destroy(t_slist *slist);
+t_slist					*slist_destroy(t_slist *slist);
 
 void					slist_initialize(t_slist *slist);
 t_slist_element			*slist_push(t_slist *slist, char const *s);

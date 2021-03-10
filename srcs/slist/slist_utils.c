@@ -39,7 +39,7 @@ t_slist_element	*slist_inject(t_slist *slist, char const *s)
 	return (new_slist_element);
 }
 
-void	slist_destroy(t_slist *slist)
+t_slist	*slist_destroy(t_slist *slist)
 {
 	t_slist_element	*element;
 	t_slist_element	*element_next;
@@ -54,4 +54,5 @@ void	slist_destroy(t_slist *slist)
 	free(slist->tail);
 	slist->head = NULL;
 	slist->tail = NULL;
+    return (slist);
 }
