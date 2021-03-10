@@ -1,6 +1,7 @@
 #include "algorithms.h"
 
-t_slist			selection_sort(t_instruction_infos const instructions[], t_stacks *stacks)
+t_slist	selection_sort(t_instruction_infos const instructions[],
+						t_stacks *stacks)
 {
 	t_slist					required_ins;
 

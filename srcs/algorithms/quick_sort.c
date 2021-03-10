@@ -101,8 +101,6 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	{
 		while (!ilist_is_sort(&stacks->a, false))
 		{
-			//ilist_show(&stacks->a, ' ');
-			//ilist_show(&stacks->b, ' ');
 			if (is_ready_to_finish(stacks))
 			{
 				finish_sorting_ordered_stacks(instructions, &required_instructions, stacks);
@@ -114,7 +112,6 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 				break ;
 			}
 			pivot_a = get_pivot_a(&stacks->a);
-			//dprintf(2, "pivot_a = %i\n", pivot_a->i);
 			if (stacks->a.head->i < pivot_a->i)
 				stock_and_call(instructions, &required_instructions, "pb", stacks);
 			else
@@ -122,16 +119,12 @@ t_slist	quick_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 		}
 		while (ilist_is_sort(&stacks->a, false))
 		{
-			//ilist_show(&stacks->a, ' ');
-			//ilist_show(&stacks->b, ' ');
 			if (is_ready_to_finish(stacks))
 			{
 				finish_sorting_ordered_stacks(instructions, &required_instructions, stacks);
 				return (required_instructions);
 			}
 			pivot_b = get_pivot_b(&stacks->b);
-			//if (pivot_b != NULL)
-			//	dprintf(2, "pivot_b = %i\n", pivot_b->i);
 			if (pivot_b == NULL)
 				stock_and_call(instructions, &required_instructions, "pa", stacks);
 			else if (stacks->b.head->i < pivot_b->i)

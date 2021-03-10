@@ -10,7 +10,8 @@ static void	putSmallestOnTopAndSwap(t_instruction_infos const instructions[],
 	rotate = get_rotate_dir_a(&stacks->a, smallest);
 	while (stacks->a.head != smallest)
 	{
-		if (stacks->a.head->i > stacks->a.head->next->i && !ilist_is_globally_sort(&stacks->a, smallest))
+		if (stacks->a.head->i > stacks->a.head->next->i
+			&& !ilist_is_globally_sort(&stacks->a, smallest))
 			stock_and_call(instructions, requiredInstructions, "sa", stacks);
 		else
 			stock_and_call(instructions, requiredInstructions, rotate, stacks);

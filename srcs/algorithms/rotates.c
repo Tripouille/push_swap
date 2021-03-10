@@ -1,10 +1,11 @@
 #include "algorithms.h"
 
-t_steps	get_r_lengths(t_ilist *ilist, t_ilist_element *src, t_ilist_element *dst)
+t_steps	get_r_lengths(t_ilist *ilist, t_ilist_element *src,
+						t_ilist_element *dst)
 {
 	t_steps				steps;
 	t_ilist_element		*element;
-	
+
 	steps.r = 0;
 	steps.rr = 0;
 	if (src == dst)
@@ -65,14 +66,15 @@ t_rotates	get_best_rotates(t_steps *a_steps, t_steps *b_steps)
 	rotates_initialize(&rotates);
 	max_steps.r = ft_max(a_steps->r, b_steps->r);
 	max_steps.rr = ft_max(a_steps->rr, b_steps->rr);
-	opposite_steps = ft_min(a_steps->r, a_steps->rr) + ft_min(b_steps->r, b_steps->rr);
+	opposite_steps = ft_min(a_steps->r, a_steps->rr)
+		+ ft_min(b_steps->r, b_steps->rr);
 	rotates.total = ft_min_3(max_steps.r, max_steps.rr, opposite_steps);
 	set_rotate_details(&rotates, &max_steps, a_steps, b_steps);
 	return (rotates);
 }
 
-void	execute_rotates(t_instruction_infos const instructions[], t_stacks *stacks,
-									 t_slist *required_instructions, t_rotates *rotates)
+void	execute_rotates(t_instruction_infos const instructions[],
+		t_stacks *stacks, t_slist *required_instructions, t_rotates *rotates)
 {
 	while (rotates->ra--)
 		stock_and_call(instructions, required_instructions, "ra", stacks);
