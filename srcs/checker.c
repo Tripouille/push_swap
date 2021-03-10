@@ -1,31 +1,7 @@
 #include "checker.h"
 
-bool	get_instructions(t_slist *instructionNames, t_instruction_infos instructions[])
-{
-	int		i;
-	char	buffer[4];
-
-	i = 0;
-	while (read(0, buffer + i, 1) == 1)
-	{
-		if (i == 3 && buffer[i] != '\n')
-			return (false);
-		else if (buffer[i] == '\n')
-		{
-			buffer[i] = 0;
-			if (!instructions_contain(instructions, buffer))
-				return (false);
-			if (slist_push(instructionNames, buffer) == NULL)
-				return (false);
-			i = 0;
-		}
-		else
-			++i;
-	}
-	return (i == 0);
-}
-
-void	execute(t_slist *instructionNames, t_instruction_infos instructions[], t_stacks *stacks)
+void	execute(t_slist *instructionNames, t_instruction_infos instructions[],
+				t_stacks *stacks)
 {
 	t_slist_element	*i;
 
@@ -53,7 +29,8 @@ void	destroy_lists(t_stacks *stacks, t_slist *instructions)
 	slist_destroy(instructions);
 }
 
-static void	initialize(t_stacks *stacks, t_slist *instructionNames, t_instruction_infos instructions[])
+static void	initialize(t_stacks *stacks, t_slist *instructionNames,
+						t_instruction_infos instructions[])
 {
 	stacks_init(stacks);
 	slist_initialize(instructionNames);
@@ -79,10 +56,8 @@ int	main(int argc, char **argv)
 		destroy_lists(&stacks, &instructionNames);
 		errorExit();
 	}
-	//dprintf(2, "debug : list before execute : "); ilist_show(&stacks.a, ' ');
 	execute(&instructionNames, instructions, &stacks);
 	printResult(&stacks);
-	//dprintf(2, "debug : list after execute : "); ilist_show(&stacks.a, ' ');
 	destroy_lists(&stacks, &instructionNames);
 	return (0);
 }

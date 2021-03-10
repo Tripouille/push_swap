@@ -35,7 +35,7 @@ void					ilist_rotate(t_ilist *ilist);
 void					ilist_reverse_rotate(t_ilist *ilist);
 
 bool					ilist_is_sort(t_ilist const *ilist, bool descending);
-bool					ilist_is_globally_sort(t_ilist *ilist,
+bool					ilist_is_globally_sort(t_ilist *ilist, \
 							t_ilist_element *smallest);
 bool					ilist_is_globally_sort2(t_ilist *ilist, bool reverse);
 bool					ilist_contain(t_ilist *ilist, int needle);

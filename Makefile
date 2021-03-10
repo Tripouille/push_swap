@@ -6,7 +6,8 @@ OBJS_DIR = objs
 PUSH_SWAP_EXECUTABLE = push_swap
 PUSH_SWAP_HEADERS = $(addprefix $(HEADERS_DIR)/, algorithms.h benchmark.h)
 PUSH_SWAP_SRCS = $(addprefix $(SRCS_DIR)/, push_swap.c \
-										$(addprefix algorithms/, algorithms.c franky_sort.c quick_sort.c selection_sort.c jm_sort.c) \
+										$(addprefix algorithms/, algorithms.c get_rotate_dir.c put.c rotates.c \
+										franky_sort.c quick_sort.c selection_sort.c jm_sort.c) \
 										$(addprefix benchmark/, benchmark.c benchmark_utils.c))
 
 PUSH_SWAP_OBJS = $(PUSH_SWAP_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
@@ -17,7 +18,7 @@ CHECKER_SRCS = $(addprefix $(SRCS_DIR)/, checker.c)
 CHECKER_OBJS = $(CHECKER_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 UTILS_HEADERS = $(addprefix $(HEADERS_DIR)/, utils.h ilist.h slist.h instructions.h stacks.h)
-UTILS_SRCS = $(addprefix $(SRCS_DIR)/,	$(addprefix utils/, utils.c utils_numbers.c utils_str.c get_numbers.c stacks.c) \
+UTILS_SRCS = $(addprefix $(SRCS_DIR)/,	$(addprefix utils/, utils.c utils_numbers.c utils_str.c get.c stacks.c) \
 										$(addprefix ilist/, ilist.c ilist_utils.c ilist_handling.c ilist_infos.c ilist_sort.c ilist_get.c) \
 										$(addprefix slist/, slist.c slist_utils.c slist_infos.c) \
 										$(addprefix instructions/, instructions.c instructions_swap.c instructions_push.c \
