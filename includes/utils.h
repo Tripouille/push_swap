@@ -5,6 +5,8 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "ilist.h"
+# include "slist.h"
+# include "instructions.h"
 
 bool	get_numbers(char **args, t_ilist *a);
 

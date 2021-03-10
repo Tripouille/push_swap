@@ -1,7 +1,7 @@
 #include "instructions.h"
 
 void	instructions_set(t_instruction_infos *instruction_infos, char *name,
-						instruction function)
+						t_instruction function)
 {
 	ft_strcpy(instruction_infos->name, name);
 	instruction_infos->funtion = function;
