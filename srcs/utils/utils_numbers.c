@@ -12,6 +12,15 @@ int	 ft_min(int a, int b)
 	return (b);
 }
 
+int	 ft_min_3(int a, int b, int c)
+{
+	if (a <= b && a <= c)
+		return (a);
+	else if (b <= c)
+		return (b);
+	return (c);
+}
+
 int	 ft_max(int a, int b)
 {
 	if (a >= b)

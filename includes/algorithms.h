@@ -11,10 +11,21 @@ typedef struct s_steps
 	int			rr;
 }				t_steps;
 
+typedef struct s_rotates
+{
+	int			rr;
+	int			ra;
+	int			rb;
+	int			rra;
+	int			rrb;
+	int			rrr;
+	int			total;
+}				t_rotates;
 
 void		stock_and_call(t_instruction_infos const instructions[], t_slist *required_instructions,
 							char const *name, t_stacks *stacks);
 t_steps		get_r_lengths(t_ilist *ilist, t_ilist_element *src, t_ilist_element *dst);
+t_rotates	get_best_rotates(t_steps *a_steps, t_steps *b_steps);
 char const	*get_rotate_dir_a(t_ilist *ilist, t_ilist_element *target);
 t_ilist_element	*get_biggest_below(t_ilist *ilist, int value);
 void	    put_target_on_top_b(t_instruction_infos const instructions[],
