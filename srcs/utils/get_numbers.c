@@ -15,10 +15,10 @@ static bool	set_number(const char *s, long *nb)
 		return (false);
 	*nb = 0;
 	i = -1;
-	while (ft_isdigit(s[++i]) && -*nb >= INT_MIN)
+	while (ft_isdigit(s[++i]) && -(*nb) >= INT_MIN)
 		*nb = *nb * 10 + s[i] - '0';
 	if (isNegative)
-		*nb = -*nb;
+		*nb = -(*nb);
 	if (s[i] || *nb > INT_MAX || *nb < INT_MIN)
 		return (false);
 	return (true);

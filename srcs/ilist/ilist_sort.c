@@ -46,7 +46,7 @@ bool	ilist_is_globally_sort(t_ilist *ilist, t_ilist_element *smallest)
 
 bool	ilist_is_globally_sort2(t_ilist *ilist, bool reverse)
 {
-	t_ilist_element *element;
+	t_ilist_element	*element;
 	bool			metEnd;
 
 	metEnd = false;
@@ -54,7 +54,7 @@ bool	ilist_is_globally_sort2(t_ilist *ilist, bool reverse)
 	while (element != ilist->tail)
 	{
 		if ((!reverse && element->i > element->next->i)
-		|| (reverse && element->i < element->next->i))
+			|| (reverse && element->i < element->next->i))
 		{
 			if (metEnd)
 				return (false);
@@ -63,7 +63,6 @@ bool	ilist_is_globally_sort2(t_ilist *ilist, bool reverse)
 		element = element->next;
 	}
 	return (!metEnd
-	|| (!reverse && ilist->tail->i < ilist->head->i)
-	|| (reverse && ilist->tail->i > ilist->head->i));
+		|| (!reverse && ilist->tail->i < ilist->head->i)
+		|| (reverse && ilist->tail->i > ilist->head->i));
 }
-
