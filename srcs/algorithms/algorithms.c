@@ -234,3 +234,20 @@ void	finish_sorting_ordered_stacks(t_instruction_infos const instructions[],
 	else
 		rotate_and_push_finish(instructions, required_instructions, stacks);
 }
+
+void	execute_rotates(t_instruction_infos const instructions[], t_stacks *stacks,
+									 t_slist *required_instructions, t_rotates *rotates)
+{
+	while (rotates->ra--)
+		stock_and_call(instructions, required_instructions, "ra", stacks);
+	while (rotates->rb--)
+		stock_and_call(instructions, required_instructions, "rb", stacks);
+	while (rotates->rr--)
+		stock_and_call(instructions, required_instructions, "rr", stacks);
+	while (rotates->rra--)
+		stock_and_call(instructions, required_instructions, "rra", stacks);
+	while (rotates->rrb--)
+		stock_and_call(instructions, required_instructions, "rrb", stacks);
+	while (rotates->rrr--)
+		stock_and_call(instructions, required_instructions, "rrr", stacks);
+}

@@ -39,7 +39,8 @@ void		put_smallest_bottom_b(t_instruction_infos const instructions[],
 							t_slist *required_instructions, t_stacks *stacks);
 void		finish_sorting_ordered_stacks(t_instruction_infos const instructions[],
 						t_slist *required_instructions, t_stacks *stacks);
-
+void		execute_rotates(t_instruction_infos const instructions[], t_stacks *stacks,
+									 t_slist *required_instructions, t_rotates *rotates);
 
 t_slist		franky_sort(t_instruction_infos const instructions[], t_stacks *stacks);
 t_slist		selection_sort(t_instruction_infos const instructions[], t_stacks *stacks);

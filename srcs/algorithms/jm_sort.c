@@ -1,23 +1,20 @@
 #include "algorithms.h"
 
-ssize_t	required_rotate_distance_to_number_in_range(t_stacks const *stacks, bool reverse, double min, double max)
+t_ilist_element	*get_element_in_range(t_stacks const *stacks, bool down, double min, double max)
 {
-	size_t				distance;
 	t_ilist_element		*element;
 
-	distance = 0;
-	if (reverse)
+	if (down)
 	{
 		element = stacks->a.tail;
 		while (element != stacks->a.head)
 		{
 			if (element->i >= min && element->i <= max)
-				return (distance + 1);
-			distance += 1;
+				return (element);
 			element = element->prev;
 		}
 		if (element->i >= min && element->i <= max)
-			return (distance + 1);
+			return (element);
 	}
 	else
 	{
@@ -25,52 +22,55 @@ ssize_t	required_rotate_distance_to_number_in_range(t_stacks const *stacks, bool
 		while (element != stacks->a.tail)
 		{
 			if (element->i >= min && element->i <= max)
-				return (distance);
-			distance += 1;
+				return (element);
 			element = element->next;
 		}
 		if (element->i >= min && element->i <= max)
-			return (distance);
+			return (element);
 	}
-	return (-1);
+	return (NULL);
+}
+
+t_steps	simulate_required_setup_b(t_ilist *b, int a_element_value)
+{
+	t_steps		result;
+
+	result.r = 0;
+	result.rr = 0;
+	if (b->size < 2)
+		return (result);
+    else if (a_element_value > ilist_get_biggest(b)->i
+    || a_element_value < ilist_get_smallest(b)->i)
+		return (get_r_lengths(b, ilist_get_smallest(b), b->tail));
+	else
+		return (get_r_lengths(b, get_biggest_below(b, a_element_value), b->head));
 }
 
 bool	put_closest_in_range_on_b(t_instruction_infos const instructions[], t_stacks *stacks,
 									 t_slist *required_instructions, double const range[2])
 {
-	ssize_t				r_length;
-	ssize_t				rr_length;
-    t_ilist_element     *target;
+	t_ilist_element		*up_element_in_range;
+	t_ilist_element		*down_element_in_range;
+	t_steps				up_steps_a;
+	t_steps				down_steps_a;
+	t_steps				up_steps_b;
+	t_steps				down_steps_b;
 
-	r_length = required_rotate_distance_to_number_in_range(stacks, false, range[0], range[1]);
-	if (r_length == -1)
+	up_element_in_range = get_element_in_range(stacks, false, range[0], range[1]);
+	if (up_element_in_range == NULL)
 		return (false);
-	rr_length = required_rotate_distance_to_number_in_range(stacks, true, range[0], range[1]);
-	if (r_length < rr_length)
-		while (r_length--)
-			stock_and_call(instructions, required_instructions, "ra", stacks);
+	down_element_in_range = get_element_in_range(stacks, true, range[0], range[1]);
+	up_steps_a = get_r_lengths(&stacks->a, up_element_in_range, stacks->a.head);
+	down_steps_a = get_r_lengths(&stacks->a, down_element_in_range, stacks->a.head);
+	up_steps_b = simulate_required_setup_b(&stacks->b, up_element_in_range->i);
+	down_steps_b = simulate_required_setup_b(&stacks->b, down_element_in_range->i);
+	t_rotates up_rotates = get_best_rotates(&up_steps_a, &up_steps_b);
+	t_rotates down_rotates = get_best_rotates(&down_steps_a, &down_steps_b);
+	if (up_rotates.total < down_rotates.total)
+		execute_rotates(instructions, stacks, required_instructions, &up_rotates);
 	else
-		while (rr_length--)
-			stock_and_call(instructions, required_instructions, "rra", stacks);
-
-    if (stacks->b.size < 2)
-    {
-        stock_and_call(instructions, required_instructions, "pb", stacks);
-        if (stacks->b.head->i < stacks->b.head->next->i)
-            stock_and_call(instructions, required_instructions, "sb", stacks);
-    }
-    else if (stacks->a.head->i > ilist_get_biggest(&stacks->b)->i
-    || stacks->a.head->i < ilist_get_smallest(&stacks->b)->i)
-    {
-        put_smallest_bottom_b(instructions,required_instructions, stacks);
-        stock_and_call(instructions, required_instructions, "pb", stacks);
-    }
-    else
-    {
-        target = get_biggest_below(&stacks->b, stacks->a.head->i);
-        put_target_on_top_b(instructions, required_instructions, stacks, target);
-        stock_and_call(instructions, required_instructions, "pb", stacks);
-    }
+		execute_rotates(instructions, stacks, required_instructions, &down_rotates);
+	stock_and_call(instructions, required_instructions, "pb", stacks);
 	return (true);
 }
 
@@ -88,7 +88,6 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	delta = biggest - lowest;
 	double step = delta / (stacks->a.size / 5.0);
 
-    //printf("delta = %i\n", delta);
 	int i = 0;
 	while (i * step < delta)
 	{
@@ -96,23 +95,12 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 		range[1] = lowest + step * (i + 1);
 		while (stacks->a.size > 0 && put_closest_in_range_on_b(instructions, stacks, &required_instructions, range))
 			;
-        //dprintf(2, "actual list\n");
-        //ilist_show(&stacks->a, ' ');
-        if (/*stacks->a.size > 0 && */ilist_is_globally_sort2(&stacks->a, false))
+        if (ilist_is_globally_sort2(&stacks->a, false))
         {
             finish_sorting_ordered_stacks(instructions, &required_instructions, stacks);
             break ;
-            //dprintf(2, "is globally sort\n");
-            //put_smallest_top_a(instructions, &required_instructions, stacks);
         }
-        //if (ilist_is_sort(&stacks->a, false))
-        //    break ;
 		++i;
 	}
-    //put_smallest_bottom_b(instructions, &required_instructions, stacks);
-	//while (!ilist_is_empty(&stacks->b))
-	//	stock_and_call(instructions, &required_instructions, "pa", stacks);
-    //dprintf(2, "fin\n");
-   //ilist_show(&stacks->a, ' ');
 	return (required_instructions);
 }
