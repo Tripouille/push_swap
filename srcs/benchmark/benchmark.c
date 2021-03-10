@@ -14,6 +14,7 @@ static void	benchmark_set(t_benchmark benchmark[], size_t pos,
 {
 	benchmark[pos].name = name;
 	benchmark[pos].algo = algo;
+	slist_initialize(&benchmark[pos].required_instructions);
 }
 
 static void	benchmark_init(t_benchmark benchmark[])
