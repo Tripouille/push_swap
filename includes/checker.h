@@ -12,6 +12,6 @@
 # include "stacks.h"
 
 bool	get_instructions(t_slist *instructionNames,
-							t_instruction_infos instructions[]);
+			t_instruction_infos instructions[]);
 
 #endif

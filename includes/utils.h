@@ -17,8 +17,8 @@ int		ft_strcmp(char const *s1, char const *s2);
 void	ft_strcpy(char *dest, char const *source);
 
 bool	ft_isdigit(char c);
-int	 	ft_min(int a, int b);
+int		ft_min(int a, int b);
 int		ft_min_3(int a, int b, int c);
-int	 	ft_max(int a, int b);
+int		ft_max(int a, int b);
 
 #endif
