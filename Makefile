@@ -7,7 +7,7 @@ PUSH_SWAP_EXECUTABLE = push_swap
 PUSH_SWAP_HEADERS = $(addprefix $(HEADERS_DIR)/, algorithms.h benchmark.h)
 PUSH_SWAP_SRCS = $(addprefix $(SRCS_DIR)/, push_swap.c \
 										$(addprefix algorithms/, algorithms.c get_rotate_dir.c put.c rotates.c \
-										franky_sort.c quick_sort.c selection_sort.c jm_sort.c) \
+										franky_sort.c quick_sort.c selection_sort.c jm_sort.c simple_swap_sort.c) \
 										$(addprefix benchmark/, benchmark.c benchmark_utils.c))
 
 PUSH_SWAP_OBJS = $(PUSH_SWAP_SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
