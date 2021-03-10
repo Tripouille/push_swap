@@ -11,7 +11,6 @@ typedef struct s_ilist_element
 	struct s_ilist_element	*prev;
 	struct s_ilist_element	*next;
 }				t_ilist_element;
-
 typedef struct s_ilist
 {
 	t_ilist_element		*head;

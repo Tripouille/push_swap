@@ -86,7 +86,7 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	lowest = ilist_get_smallest(&stacks->a)->i;
 	biggest = ilist_get_biggest(&stacks->a)->i;
 	delta = biggest - lowest;
-	double step = delta / (stacks->a.size / 5.0);
+	double step = delta / (stacks->a.size / 15);
 
 	int i = 0;
 	while (i * step < delta)
