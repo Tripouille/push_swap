@@ -94,7 +94,8 @@ t_slist	jm_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 	{
 		range[0] = lowest + step * i;
 		range[1] = lowest + step * (i + 1);
-		while (stacks->a.size > 0 && put_closest_in_range_on_b(instructions, stacks, &required_instructions, range));
+		while (stacks->a.size > 0 && put_closest_in_range_on_b(instructions, stacks, &required_instructions, range))
+			;
         //dprintf(2, "actual list\n");
         //ilist_show(&stacks->a, ' ');
         if (/*stacks->a.size > 0 && */ilist_is_globally_sort2(&stacks->a, false))

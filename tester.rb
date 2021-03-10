@@ -13,7 +13,7 @@ end
 
 def doTests(numberLimit)
     results = []
-    1000.times do
+    10.times do
         numbers = getRandomNumber(numberLimit)
 		#puts numbers
         instructions = `#{'./push_swap ' + numbers}`
@@ -25,8 +25,8 @@ def doTests(numberLimit)
 end
 
 print "TEST".center(30), "LOWEST".center(10), "BIGGEST".center(10), "AVERAGE".center(10); puts
-#print "Simple 5 random values".center(30); doTests(5)
+print "Simple 5 random values".center(30); doTests(5)
 #print "Perso 8 random values".center(30); doTests(8)
 print "Middle 100 random values".center(30); doTests(100)
-#print "Advanced 500 random values".center(30); doTests(500)
+print "Advanced 500 random values".center(30); doTests(500)
 #print "Exterme 1000 random values".center(30); doTests(1000)
