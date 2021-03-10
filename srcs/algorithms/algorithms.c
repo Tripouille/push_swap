@@ -22,6 +22,25 @@ int			get_r_length(t_ilist *ilist, t_ilist_element *target)
 	return (r_length);
 }
 
+t_steps		get_r_lengths(t_ilist *ilist, t_ilist_element *src, t_ilist_element *dst)
+{
+	t_steps				steps;
+	t_ilist_element		*element;
+	
+	steps.r = 0;
+	steps.rr = 0;
+	if (src == dst)
+		return (steps);
+	element = src;
+	while (element != dst)
+	{
+		steps.r += 1;
+		element = element->prev;
+	}
+	steps.rr = ilist->size - steps.r;
+	return (steps);
+}
+
 char const	*get_rotate_dir_a(t_ilist *ilist, t_ilist_element *target)
 {
 	int						ra_length;
