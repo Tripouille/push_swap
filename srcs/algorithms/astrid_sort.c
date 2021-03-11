@@ -18,7 +18,7 @@ static void	putSmallestOnTopAndSwap(t_instruction_infos const instructions[],
 	}
 }
 
-t_slist	franky_sort(t_instruction_infos const instructions[], t_stacks *stacks)
+t_slist	astrid_sort(t_instruction_infos const instructions[], t_stacks *stacks)
 {
 	t_slist	required_instructions;
 

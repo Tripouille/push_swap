@@ -63,7 +63,6 @@ t_slist	simple_swap_sort(t_instruction_infos const instructions[],
 			stock_and_call(instructions, &required_instructions, rotate,
 				stacks);
 		stock_and_call(instructions, &required_instructions, "sa", stacks);
-		//ilist_show(&stacks->a, ' ');
 	}
 	put_smallest_top_a(instructions, &required_instructions, stacks);
 	return (required_instructions);

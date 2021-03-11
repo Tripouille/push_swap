@@ -22,11 +22,10 @@ static void	benchmark_init(t_benchmark benchmark[], size_t list_size)
 	size_t		i;
 
 	i = 0;
-	benchmark_set(benchmark, i++, "franky_sort", &franky_sort);
+	benchmark_set(benchmark, i++, "astrid_sort", &astrid_sort);
 	benchmark_set(benchmark, i++, "selection_sort", &selection_sort);
-	//benchmark_set(benchmark, i++, "jm_sort", &jm_sort);
-	benchmark_set(benchmark, i++, "jm_sort2", &jm_sort2);
-	if (list_size < 100) (void)i;
+	benchmark_set(benchmark, i++, "jm_sort", &jm_sort);
+	if (list_size < 100)
 		benchmark_set(benchmark, i++, "simple_swap_sort", &simple_swap_sort);
 	benchmark_set(benchmark, i, "", NULL);
 }
@@ -48,6 +47,8 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 		}
 		benchmark[i].required_instructions
 			= benchmark[i].algo(instructions, &stacks_copy);
+		if (!ilist_is_sort(&stacks_copy.a, false))
+			{dprintf(2, "this list was not sorted by %s :", benchmark[i].name); ilist_show(&stacks->a, ' ');}
 		stacks_destroy(&stacks_copy);
 		if (benchmark[i].required_instructions.size == 0)
 		{

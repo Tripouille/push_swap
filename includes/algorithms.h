@@ -60,13 +60,11 @@ void			put_smallest_top_b(t_instruction_infos const instructions[], \
 void			put_smallest_bottom_b(t_instruction_infos const instructions[], \
 					t_slist *required_instructions, t_stacks *stacks);
 
-t_slist			franky_sort(t_instruction_infos const instructions[], \
+t_slist			astrid_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
 t_slist			selection_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
 t_slist			jm_sort(t_instruction_infos const instructions[], \
-					t_stacks *stacks);
-t_slist			jm_sort2(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
 t_slist			simple_swap_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
