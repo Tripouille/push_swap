@@ -29,7 +29,7 @@ bool	get_numbers(char **args, t_ilist *a)
 	int		i;
 	long	nb;
 
-	i = 0;
+	i = -1;
 	while (args[++i] != NULL)
 	{
 		if (!set_number(args[i], &nb) || ilist_contain(a, nb))
