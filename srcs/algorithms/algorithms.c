@@ -55,3 +55,37 @@ void	finish_sorting_ordered_stacks(t_instruction_infos const instructions[],
 			stock_and_call(instructions, required_instructions, "pa", stacks);
 	}
 }
+
+t_ilist_element	*get_element_in_range_up(t_stacks const *stacks,
+	double min, double max)
+{
+	t_ilist_element		*element;
+
+	element = stacks->a.head;
+	while (element != stacks->a.tail)
+	{
+		if (element->i >= min && element->i <= max)
+			return (element);
+		element = element->next;
+	}
+	if (element->i >= min && element->i <= max)
+		return (element);
+	return (NULL);
+}
+
+t_ilist_element	*get_element_in_range_down(t_stacks const *stacks,
+	double min, double max)
+{
+	t_ilist_element		*element;
+
+	element = stacks->a.tail;
+	while (element != stacks->a.head)
+	{
+		if (element->i >= min && element->i <= max)
+			return (element);
+		element = element->prev;
+	}
+	if (element->i >= min && element->i <= max)
+		return (element);
+	return (NULL);
+}

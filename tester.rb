@@ -1,27 +1,27 @@
 require 'set'
 class String
-    def red; "\e[31m#{self}\e[0m" end
-    def green; "\e[32m#{self}\e[0m" end
-    def blue; "\e[34m#{self}\e[0m" end
+	def red; "\e[31m#{self}\e[0m" end
+	def green; "\e[32m#{self}\e[0m" end
+	def blue; "\e[34m#{self}\e[0m" end
 end
 
 def getRandomNumber(n)
-    numbers = Set.new
-    while numbers.size < n do numbers << rand(10000).to_s end
-    numbers.to_a.join(' ')
+	numbers = Set.new
+	while numbers.size < n do numbers << rand(10000).to_s end
+	numbers.to_a.join(' ')
 end
 
 def doTests(numberLimit)
-    results = []
-    10.times do
-        numbers = getRandomNumber(numberLimit)
+	results = []
+	10.times do
+		numbers = getRandomNumber(numberLimit)
 		#puts numbers
-        instructions = `#{'./push_swap ' + numbers}`
-        command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
-        if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
-        results << instructions.split("\n").size
-    end
-    print "#{results.min}".center(10).green, "#{results.max}".center(10).red, "#{results.reduce(:+).fdiv(results.size)}".center(10).blue; puts
+		instructions = `#{'./push_swap ' + numbers}`
+		command = '/bin/echo -n \'' + instructions + '\' | ./checker ' + numbers;
+		if `#{command}`[0..1] != 'OK' then puts "failure".center(10).red; return end
+		results << instructions.split("\n").size
+	end
+	print "#{results.min}".center(10).green, "#{results.max}".center(10).red, "#{results.reduce(:+).fdiv(results.size)}".center(10).blue; puts
 end
 
 print "TEST".center(30), "LOWEST".center(10), "BIGGEST".center(10), "AVERAGE".center(10); puts
