@@ -22,9 +22,11 @@ static void	benchmark_init(t_benchmark benchmark[], size_t list_size)
 	size_t		i;
 
 	i = 0;
+	benchmark_set(benchmark, i++, "franky_sort", &franky_sort);
 	benchmark_set(benchmark, i++, "selection_sort", &selection_sort);
-	benchmark_set(benchmark, i++, "jm_sort", &jm_sort);
-	if (list_size < 100)
+	//benchmark_set(benchmark, i++, "jm_sort", &jm_sort);
+	benchmark_set(benchmark, i++, "jm_sort2", &jm_sort2);
+	if (list_size < 100) (void)i;
 		benchmark_set(benchmark, i++, "simple_swap_sort", &simple_swap_sort);
 	benchmark_set(benchmark, i, "", NULL);
 }
@@ -67,6 +69,6 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	if (!benchmark_launch(instructions, stacks, benchmark))
 		return ;
 	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
-	benchmark_show(benchmark);
+	//benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }

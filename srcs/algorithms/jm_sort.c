@@ -1,6 +1,6 @@
 #include "algorithms.h"
 
-t_steps	simulate_required_setup_b(t_ilist *b, int a_element_value)
+static t_steps	simulate_required_setup_b(t_ilist *b, int a_element_value)
 {
 	t_steps		result;
 
@@ -16,7 +16,7 @@ t_steps	simulate_required_setup_b(t_ilist *b, int a_element_value)
 				b->head));
 }
 
-bool	put_closest_in_range_on_b(t_instruction_infos const instructions[],
+static bool	put_closest_in_range_on_b(t_instruction_infos const instructions[],
 			t_stacks *stacks, t_slist *r_instructions, double const range[2])
 {
 	t_ilist_element		*up_element;

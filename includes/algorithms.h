@@ -66,6 +66,8 @@ t_slist			selection_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
 t_slist			jm_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
+t_slist			jm_sort2(t_instruction_infos const instructions[], \
+					t_stacks *stacks);
 t_slist			simple_swap_sort(t_instruction_infos const instructions[], \
 					t_stacks *stacks);
 
