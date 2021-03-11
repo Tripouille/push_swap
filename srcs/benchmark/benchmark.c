@@ -23,7 +23,7 @@ static void	benchmark_init(t_benchmark benchmark[])
 	benchmark_set(benchmark, 1, "quick_sort", &quick_sort);
 	benchmark_set(benchmark, 2, "jm_sort", &jm_sort);
 	benchmark_set(benchmark, 3, "simple_swap_sort", &simple_swap_sort);
-	benchmark_set(benchmark, 3, "", NULL);
+	benchmark_set(benchmark, 4, "", NULL);
 }
 
 static bool	benchmark_launch(t_instruction_infos const instructions[],
@@ -44,7 +44,7 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 		benchmark[i].required_instructions
 			= benchmark[i].algo(instructions, &stacks_copy);
 		stacks_destroy(&stacks_copy);
-        if (benchmark[i].required_instructions.size == 0)
+		if (benchmark[i].required_instructions.size == 0)
 		{
 			benchmark_destroy(benchmark);
 			return (false);
@@ -64,6 +64,6 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	if (!benchmark_launch(instructions, stacks, benchmark))
 		return ;
 	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
-	benchmark_show(benchmark);
+	//benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }

@@ -22,6 +22,12 @@ typedef struct s_rotates
 	int		total;
 }			t_rotates;
 
+typedef struct s_element_pair
+{
+	t_ilist_element	*a;
+	t_ilist_element	*b;
+}					t_element_pair;
+
 void			stock_and_call(t_instruction_infos const instructions[],
 					t_slist *required_instructions,
 					char const *name, t_stacks *stacks);

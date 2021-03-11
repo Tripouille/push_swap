@@ -7,13 +7,13 @@ end
 
 def getRandomNumber(n)
     numbers = Set.new
-    while numbers.size < n do numbers << rand(100).to_s end
+    while numbers.size < n do numbers << rand(10000).to_s end
     numbers.to_a.join(' ')
 end
 
 def doTests(numberLimit)
     results = []
-    100.times do
+    10.times do
         numbers = getRandomNumber(numberLimit)
 		#puts numbers
         instructions = `#{'./push_swap ' + numbers}`
@@ -28,5 +28,5 @@ print "TEST".center(30), "LOWEST".center(10), "BIGGEST".center(10), "AVERAGE".ce
 print "Simple 5 random values".center(30); doTests(5)
 #print "Perso 8 random values".center(30); doTests(8)
 print "Middle 100 random values".center(30); doTests(100) #700
-#print "Advanced 500 random values".center(30); doTests(500) #5500
+print "Advanced 500 random values".center(30); doTests(500) #5500
 #print "Exterme 1000 random values".center(30); doTests(1000)

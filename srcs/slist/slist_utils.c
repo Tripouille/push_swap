@@ -54,5 +54,5 @@ t_slist	*slist_destroy(t_slist *slist)
 	free(slist->tail);
 	slist->head = NULL;
 	slist->tail = NULL;
-    return (slist);
+	return (slist);
 }

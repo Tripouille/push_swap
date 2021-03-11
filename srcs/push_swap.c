@@ -6,10 +6,10 @@ static void	initialize(t_instruction_infos instructions[], t_stacks *stacks)
 	stacks_init(stacks);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_instruction_infos	instructions[12];
-	t_stacks				stacks;
+	t_stacks			stacks;
 
 	if (ac == 1)
 		return (0);
