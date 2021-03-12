@@ -8,15 +8,15 @@ static void	sleep_erase(void)
 
 static void	print_stacks(t_stacks const *stacks)
 {
-	printf("\033[36ma : ");
+	printf("\033[31ma : ");
 	ilist_show(&stacks->a, ' ');
-	printf("\033[34mb : ");
+	printf("\033[33mb : ");
 	ilist_show(&stacks->b, ' ');
 	printf("\033[0m");
 }
 
 static void	show_instructions_film(t_slist const *required_instructions,
-	t_instruction_infos const instructions[], t_stacks *stacks)
+t_instruction_infos const instructions[], t_stacks *stacks, bool color_last)
 {
 	t_slist_element	*element;
 
@@ -31,13 +31,16 @@ static void	show_instructions_film(t_slist const *required_instructions,
 		element = element->next;
 	}
 	sleep_erase();
-	printf("%s\n", element->s);
+	if (color_last)
+		printf("\033[32m%s\033[0m\n", element->s);
+	else
+		printf("\033[32m%s\033[0m\n", element->s);
 	instructions_call(instructions, element->s, stacks);
 	print_stacks(stacks);
 }
 
 static void	show_instructions_static(t_slist const *required_instructions,
-	t_instruction_infos const instructions[], t_stacks *stacks)
+t_instruction_infos const instructions[], t_stacks *stacks, bool color_last)
 {
 	t_slist_element	*element;
 
@@ -50,7 +53,10 @@ static void	show_instructions_static(t_slist const *required_instructions,
 		print_stacks(stacks);
 		element = element->next;
 	}
-	printf("%s\n", element->s);
+	if (color_last)
+		printf("\033[32m%s\033[0m\n", element->s);
+	else
+		printf("\033[32m%s\033[0m\n", element->s);
 	instructions_call(instructions, element->s, stacks);
 	print_stacks(stacks);
 }
@@ -60,9 +66,11 @@ void	show_instructions(t_slist const *required_instructions,
 	t_option options[])
 {
 	if (get_option(options, 'f')->active)
-		show_instructions_film(required_instructions, instructions, stacks);
+		show_instructions_film(required_instructions, instructions, stacks,
+			get_option(options, 'c')->active);
 	else if (get_option(options, 'v')->active)
-		show_instructions_static(required_instructions, instructions, stacks);
+		show_instructions_static(required_instructions, instructions, stacks,
+			get_option(options, 'c')->active);
 	else if (get_option(options, 'c')->active)
 		slist_show_color(required_instructions, '\n');
 	else
