@@ -10,6 +10,7 @@
 
 bool	get_numbers(char **args, t_ilist *a);
 
+void	error(void);
 void	errorExit(void);
 
 int		ft_strlen(char const *s);
