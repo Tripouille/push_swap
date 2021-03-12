@@ -13,7 +13,7 @@ end
 
 def doTests(numberLimit)
 	results = []
-	1.times do
+	10.times do
 		numbers = getRandomNumber(numberLimit)
 		#puts numbers
 		instructions = `#{'./push_swap ' + numbers}`

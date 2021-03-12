@@ -59,12 +59,12 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 void	print_best_algo(t_instruction_infos const instructions[],
 						t_stacks *stacks, t_option options[])
 {
-	t_benchmark			benchmark[10];
-    t_option           *a;
+	t_benchmark		benchmark[10];
+	t_option		*a;
 
 	benchmark_init(benchmark);
-    a = (get_option(options, 'a'));
-    if (a->active && !benchmark_contain(benchmark, a->value))
+	a = (get_option(options, 'a'));
+	if (a->active && !benchmark_contain(benchmark, a->value))
 		return (error());
 	if (ilist_is_sort(&stacks->a, false))
 		return ;
@@ -76,7 +76,7 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	else
 		show_instructions(&get_best_benchmark(benchmark)->\
 			required_instructions, instructions, stacks, options);
-    if (get_option(options, 'b')->active)
-	    benchmark_show(benchmark);
+	if (get_option(options, 'b')->active)
+		benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }

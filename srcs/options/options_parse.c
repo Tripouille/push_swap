@@ -25,10 +25,11 @@ void	options_parse(t_option options[], char ***args)
 
 void	option_activate(t_option options[], int *pos, char ***args)
 {
-	int 		i;
+	int		i;
 
 	i = -1;
 	while (options[++i].name)
+	{
 		if (options[i].name == (**args)[*pos])
 		{
 			options[i].active = true;
@@ -48,4 +49,5 @@ void	option_activate(t_option options[], int *pos, char ***args)
 			}
 			return ;
 		}
+	}
 }

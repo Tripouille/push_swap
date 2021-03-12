@@ -1,15 +1,15 @@
 #include "benchmark.h"
 #include "options.h"
 
-static int help(t_option options[])
+static int	help(t_option options[])
 {
-    int i;
+	int		i;
 
-    i = -1;
-    printf("push_swap help:\n");
-    while (options[++i].name)
-        printf("-%c: %s\n", options[i].name, options[i].description);
-    return (0);
+	i = -1;
+	printf("push_swap help:\n");
+	while (options[++i].name)
+		printf("-%c: %s\n", options[i].name, options[i].description);
+	return (0);
 }
 
 static void	initialize(t_instruction_infos instructions[], t_stacks *stacks)

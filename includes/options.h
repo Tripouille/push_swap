@@ -1,5 +1,5 @@
 #ifndef OPTIONS_H
-#define OPTIONS_H
+# define OPTIONS_H
 # include <stdbool.h>
 # include "utils.h"
 
@@ -9,7 +9,7 @@ typedef struct s_option
 	bool			active;
 	bool			need_arg;
 	char const		*value;
-    char const      *description;
+	char const		*description;
 }				t_option;
 
 void		options_initialize_push_swap(t_option options[]);

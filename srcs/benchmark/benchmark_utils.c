@@ -1,14 +1,15 @@
 #include "benchmark.h"
 
-t_benchmark const	*get_benchmark(t_benchmark const benchmark[], char const *algo_name)
+t_benchmark const	*get_benchmark(t_benchmark const benchmark[],
+									char const *algo_name)
 {
-    int		i;
+	int		i;
 
 	i = -1;
 	while (benchmark[++i].algo != NULL)
-        if (!ft_strcmp(benchmark[i].name, algo_name))
-            return (benchmark + i);
-    return (NULL);
+		if (!ft_strcmp(benchmark[i].name, algo_name))
+			return (benchmark + i);
+	return (NULL);
 }
 
 t_benchmark const	*get_best_benchmark(t_benchmark const benchmark[])
@@ -44,15 +45,15 @@ void	benchmark_show(t_benchmark const benchmark[])
 	printf("\n");
 }
 
-bool    benchmark_contain(t_benchmark const benchmark[], char const *algo_name)
+bool	benchmark_contain(t_benchmark const benchmark[], char const *algo_name)
 {
-    int		i;
+	int		i;
 
 	if (algo_name == NULL)
 		return (false);
 	i = -1;
 	while (benchmark[++i].algo != NULL)
-        if (!ft_strcmp(benchmark[i].name, algo_name))
-            return (true);
-    return (false);
+		if (!ft_strcmp(benchmark[i].name, algo_name))
+			return (true);
+	return (false);
 }
