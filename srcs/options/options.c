@@ -9,18 +9,6 @@ static void	option_set(t_option *option, char name, bool need_arg,
 	option->description = description;
 }
 
-
-void	options_initialize_checker(t_option options[])
-{
-	int     i;
-
-	i = 0;
-	option_set(options + i++, 'v', false, "");
-	option_set(options + i++, 'f', false, "");
-	option_set(options + i++, 'h', false, "");
-	option_set(options + i++, 0, false, "");
-}
-
 void	options_initialize_push_swap(t_option options[])
 {
 	int     i;

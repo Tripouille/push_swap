@@ -10,7 +10,6 @@
 # include "slist.h"
 # include "instructions.h"
 # include "stacks.h"
-# include "options.h"
 
 bool	get_instructions(t_slist *instructionNames,
 			t_instruction_infos instructions[]);

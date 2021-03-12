@@ -43,14 +43,11 @@ int	main(int argc, char **argv)
 	t_stacks			stacks;
 	t_slist				required_instructions;
 	t_instruction_infos	instructions[12];
-	t_option			options[10];
 
 	if (argc == 1)
 		return (0);
-	options_initialize_checker(options);
-	options_parse(options, &argv);
 	initialize(&stacks, &required_instructions, instructions);
-	if (!get_numbers(argv, &stacks.a))
+	if (!get_numbers(argv + 1, &stacks.a))
 	{
 		stacks_destroy(&stacks);
 		errorExit();

@@ -24,8 +24,7 @@ int	main(int ac, char **av)
 	t_stacks			stacks;
 	t_option			options[10];
 
-	if (ac == 1)
-		return (0);
+	(void)ac;
 	options_initialize_push_swap(options);
 	options_parse(options, &av);
 	if (get_option(options, 'h')->active)
