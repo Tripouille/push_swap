@@ -4,6 +4,7 @@
 # include "instructions.h"
 # include "stacks.h"
 # include "algorithms.h"
+# include "options.h"
 
 typedef t_slist	(*t_algorithm)(t_instruction_infos const instructions[],
 	t_stacks *stacks);
@@ -16,7 +17,7 @@ typedef struct s_benchmark
 }				t_benchmark;
 
 void				print_best_algo(t_instruction_infos const instructions[],
-						t_stacks *stacks);
+						t_stacks *stacks, t_option options[]);
 
 t_benchmark const	*get_best_benchmark(t_benchmark const benchmark[]);
 void				benchmark_show(t_benchmark const benchmark[]);

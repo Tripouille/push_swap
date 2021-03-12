@@ -11,7 +11,7 @@ int	main(int ac, char **av)
 {
 	t_instruction_infos	instructions[12];
 	t_stacks			stacks;
-	t_option			options[6];
+	t_option			options[10];
 
 	if (ac == 1)
 		return (0);
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		stacks_destroy(&stacks);
 		errorExit();
 	}
-	print_best_algo(instructions, &stacks);
+	print_best_algo(instructions, &stacks, options);
 	stacks_destroy(&stacks);
 	return (0);
 }
