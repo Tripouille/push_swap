@@ -34,7 +34,7 @@ t_instruction_infos const instructions[], t_stacks *stacks, bool color_last)
 	if (color_last)
 		printf("\033[32m%s\033[0m\n", element->s);
 	else
-		printf("\033[32m%s\033[0m\n", element->s);
+		printf("%s\n", element->s);
 	instructions_call(instructions, element->s, stacks);
 	print_stacks(stacks);
 }
@@ -56,7 +56,7 @@ t_instruction_infos const instructions[], t_stacks *stacks, bool color_last)
 	if (color_last)
 		printf("\033[32m%s\033[0m\n", element->s);
 	else
-		printf("\033[32m%s\033[0m\n", element->s);
+		printf("%s\n", element->s);
 	instructions_call(instructions, element->s, stacks);
 	print_stacks(stacks);
 }
