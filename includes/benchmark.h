@@ -26,7 +26,4 @@ void				benchmark_show(t_benchmark const benchmark[]);
 bool                benchmark_contain(t_benchmark const benchmark[], char const *algo_name);
 
 
-void	show_instructions_verbose(t_slist const *required_instructions,
-	t_instruction_infos const instructions[], t_stacks *stacks);
-
 #endif
