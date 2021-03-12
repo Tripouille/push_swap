@@ -1,6 +1,17 @@
 #include "benchmark.h"
 #include "options.h"
 
+static int help(t_option options[])
+{
+    int i;
+
+    i = -1;
+    printf("push_swap help:\n");
+    while (options[++i].name)
+        printf("-%c: %s\n", options[i].name, options[i].description);
+    return (0);
+}
+
 static void	initialize(t_instruction_infos instructions[], t_stacks *stacks)
 {
 	instructions_init(instructions);
@@ -16,9 +27,9 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	options_initialize_push_swap(options);
-	//printf("avant %s", *av);
 	options_parse(options, &av);
-	//printf("apres %s", *av);
+	if (get_option(options, 'h')->active)
+		return (help(options));
 	initialize(instructions, &stacks);
 	if (!get_numbers(av, &stacks.a))
 	{

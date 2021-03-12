@@ -48,6 +48,8 @@ bool    benchmark_contain(t_benchmark const benchmark[], char const *algo_name)
 {
     int		i;
 
+	if (algo_name == NULL)
+		return (false);
 	i = -1;
 	while (benchmark[++i].algo != NULL)
         if (!ft_strcmp(benchmark[i].name, algo_name))

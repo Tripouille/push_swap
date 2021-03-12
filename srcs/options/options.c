@@ -1,36 +1,44 @@
 #include "options.h"
 
-void	option_set(t_option *option, char name, bool need_arg)
+static void	option_set(t_option *option, char name, bool need_arg,
+					char const *description)
 {
 	option->name = name;
 	option->need_arg = need_arg;
 	option->active = false;
+	option->description = description;
 }
 
 
 void	options_initialize_checker(t_option options[])
 {
-    int     i;
+	int     i;
 
-    i = 0;
-	option_set(options + i++, 'v', false);
-	option_set(options + i++, 'f', false);
-	option_set(options + i++, 'h', false);
-	option_set(options + i++, 0, false);
+	i = 0;
+	option_set(options + i++, 'v', false, "");
+	option_set(options + i++, 'f', false, "");
+	option_set(options + i++, 'h', false, "");
+	option_set(options + i++, 0, false, "");
 }
 
 void	options_initialize_push_swap(t_option options[])
 {
-    int     i;
+	int     i;
 
-    i = 0;
-	option_set(options + i++, 'v', false);
-	option_set(options + i++, 'f', false);
-	option_set(options + i++, 'a', true);
-	option_set(options + i++, 'c', false);
-	option_set(options + i++, 'b', false);
-	option_set(options + i++, 'h', false);
-	option_set(options + i++, 0, false);
+	i = 0;
+	option_set(options + i++, 'v', false,
+		"verbose (displays stacks before each step)");
+	option_set(options + i++, 'f', false,
+		"film (same as verbose with animation)");
+	option_set(options + i++, 'a', true,
+		"algo (allows to choose the sorting algorithm)");
+	option_set(options + i++, 'c', false,
+		"color (colors the last instruction)");
+	option_set(options + i++, 'b', false,
+		"benchmark (shows the step numbers of each algorithm)");
+	option_set(options + i++, 'h', false,
+		"help (current option)");
+	option_set(options + i++, 0, false, "");
 }
 
 bool	options_contain(t_option options[], char option_name)

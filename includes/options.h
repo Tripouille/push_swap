@@ -11,9 +11,9 @@ typedef struct s_option
 	bool			active;
 	bool			need_arg;
 	char const		*value;
+    char const      *description;
 }				t_option;
 
-void	option_set(t_option *option, char name, bool need_arg);
 void    options_initialize_push_swap(t_option options[]);
 void    options_initialize_checker(t_option options[]);
 bool        options_contain(t_option options[], char option_name);
