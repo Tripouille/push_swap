@@ -57,7 +57,10 @@ void	ilist_show(t_ilist const *ilist, char sep)
 	t_ilist_element	*element;
 
 	if (ilist->head == NULL)
+	{
+		dprintf(2, "\n");
 		return ;
+	}
 	element = ilist->head;
 	while (element != ilist->tail)
 	{

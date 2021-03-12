@@ -60,7 +60,7 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 }
 
 void	print_best_algo(t_instruction_infos const instructions[],
-						t_stacks const *stacks)
+						t_stacks *stacks)
 {
 	t_benchmark			benchmark[10];
 
@@ -69,7 +69,8 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	benchmark_init(benchmark, stacks->a.size);
 	if (!benchmark_launch(instructions, stacks, benchmark))
 		return ;
-	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
+	//slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
+	show_instructions_verbose(&get_best_benchmark(benchmark)->required_instructions, instructions, stacks);
 	benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }

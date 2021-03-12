@@ -15,6 +15,7 @@ void	errorExit(void);
 int		ft_strlen(char const *s);
 int		ft_strcmp(char const *s1, char const *s2);
 void	ft_strcpy(char *dest, char const *source);
+void	ft_putstr_fd(int fd, char const *s);
 
 bool	ft_isdigit(char c);
 int		ft_min(int a, int b);
