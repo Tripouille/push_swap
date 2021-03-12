@@ -71,7 +71,7 @@ void	print_best_algo(t_instruction_infos const instructions[],
 		return ;
 	if (get_option(options, 'v')->active || get_option(options, 'f')->active)
 		show_instructions_verbose(&get_best_benchmark(benchmark)\
-			->required_instructions, instructions, stacks);
+			->required_instructions, instructions, stacks, options);
 	else
 		slist_show(&get_best_benchmark(benchmark)->required_instructions,
 			'\n');

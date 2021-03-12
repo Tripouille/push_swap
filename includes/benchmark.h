@@ -22,7 +22,4 @@ void				print_best_algo(t_instruction_infos const instructions[],
 t_benchmark const	*get_best_benchmark(t_benchmark const benchmark[]);
 void				benchmark_show(t_benchmark const benchmark[]);
 
-void	show_instructions_verbose(t_slist const *required_instructions,
-	t_instruction_infos const instructions[], t_stacks *stacks);
-
 #endif
