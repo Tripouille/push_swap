@@ -17,7 +17,7 @@ static void	benchmark_set(t_benchmark benchmark[], size_t pos,
 	slist_initialize(&benchmark[pos].required_instructions);
 }
 
-static void	benchmark_init(t_benchmark benchmark[], size_t list_size)
+static void	benchmark_init(t_benchmark benchmark[])
 {
 	size_t		i;
 
@@ -25,8 +25,7 @@ static void	benchmark_init(t_benchmark benchmark[], size_t list_size)
 	benchmark_set(benchmark, i++, "astrid_sort", &astrid_sort);
 	benchmark_set(benchmark, i++, "selection_sort", &selection_sort);
 	benchmark_set(benchmark, i++, "jm_sort", &jm_sort);
-	if (list_size < 100)
-		benchmark_set(benchmark, i++, "simple_swap_sort", &simple_swap_sort);
+	benchmark_set(benchmark, i++, "simple_swap_sort", &simple_swap_sort);
 	benchmark_set(benchmark, i, "", NULL);
 }
 
@@ -47,8 +46,6 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 		}
 		benchmark[i].required_instructions
 			= benchmark[i].algo(instructions, &stacks_copy);
-		if (!ilist_is_sort(&stacks_copy.a, false))
-			{dprintf(2, "this list was not sorted by %s :", benchmark[i].name); ilist_show(&stacks->a, ' ');}
 		stacks_destroy(&stacks_copy);
 		if (benchmark[i].required_instructions.size == 0)
 		{
@@ -63,18 +60,22 @@ void	print_best_algo(t_instruction_infos const instructions[],
 						t_stacks *stacks, t_option options[])
 {
 	t_benchmark			benchmark[10];
+    t_option           *a;
 
+	benchmark_init(benchmark);
+    a = (get_option(options, 'a'));
+    if (a->active && !benchmark_contain(benchmark, a->value))
+		return (error());
 	if (ilist_is_sort(&stacks->a, false))
 		return ;
-	benchmark_init(benchmark, stacks->a.size);
 	if (!benchmark_launch(instructions, stacks, benchmark))
-		return ;
-	if (get_option(options, 'v')->active || get_option(options, 'f')->active)
-		show_instructions_verbose(&get_best_benchmark(benchmark)\
-			->required_instructions, instructions, stacks, options);
+		return (error());
+	if (a->active)
+		show_instructions(&get_benchmark(benchmark, a->value)->\
+			required_instructions, instructions, stacks, options);
 	else
-		slist_show(&get_best_benchmark(benchmark)->required_instructions,
-			'\n');
+		show_instructions(&get_best_benchmark(benchmark)->\
+			required_instructions, instructions, stacks, options);
     if (get_option(options, 'b')->active)
 	    benchmark_show(benchmark);
 	benchmark_destroy(benchmark);

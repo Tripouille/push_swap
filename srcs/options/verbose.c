@@ -60,12 +60,14 @@ static void	show_instructions_static(t_slist const *required_instructions,
 	print_stacks(stacks);
 }
 
-void	show_instructions_verbose(t_slist const *required_instructions,
+void	show_instructions(t_slist const *required_instructions,
 	t_instruction_infos const instructions[], t_stacks *stacks,
 	t_option options[])
 {
 	if (get_option(options, 'f')->active)
 		show_instructions_film(required_instructions, instructions, stacks);
-	else
+	else if (get_option(options, 'v')->active)
 		show_instructions_static(required_instructions, instructions, stacks);
+	else
+		slist_show(required_instructions, '\n');
 }
