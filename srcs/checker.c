@@ -1,18 +1,19 @@
 #include "checker.h"
 
-void	execute(t_slist *instructionNames, t_instruction_infos instructions[],
-				t_stacks *stacks)
+void	execute(t_slist *required_instructions,
+	t_instruction_infos instructions[], t_stacks *stacks)
 {
 	t_slist_element	*i;
 
-	i = instructionNames->head;
-	while (i != instructionNames->tail)
+	i = required_instructions->head;
+	while (i != required_instructions->tail)
 	{
 		instructions_call(instructions, i->s, stacks);
 		i = i->next;
 	}
-	if (instructionNames->tail != NULL)
-		instructions_call(instructions, instructionNames->tail->s, stacks);
+	if (required_instructions->tail != NULL)
+		instructions_call(instructions, required_instructions->tail->s,
+			stacks);
 }
 
 void	printResult(t_stacks *stacks)
@@ -29,35 +30,38 @@ void	destroy_lists(t_stacks *stacks, t_slist *instructions)
 	slist_destroy(instructions);
 }
 
-static void	initialize(t_stacks *stacks, t_slist *instructionNames,
+static void	initialize(t_stacks *stacks, t_slist *required_instructions,
 						t_instruction_infos instructions[])
 {
 	stacks_init(stacks);
-	slist_initialize(instructionNames);
+	slist_initialize(required_instructions);
 	instructions_init(instructions);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stacks			stacks;
-	t_slist				instructionNames;
+	t_slist				required_instructions;
 	t_instruction_infos	instructions[12];
+	t_option			options[10];
 
 	if (argc == 1)
 		return (0);
-	initialize(&stacks, &instructionNames, instructions);
+	options_initialize_checker(options);
+	options_parse(options, &argv);
+	initialize(&stacks, &required_instructions, instructions);
 	if (!get_numbers(argv, &stacks.a))
 	{
 		stacks_destroy(&stacks);
 		errorExit();
 	}
-	if (!get_instructions(&instructionNames, instructions))
+	if (!get_instructions(&required_instructions, instructions))
 	{
-		destroy_lists(&stacks, &instructionNames);
+		destroy_lists(&stacks, &required_instructions);
 		errorExit();
 	}
-	execute(&instructionNames, instructions, &stacks);
+	execute(&required_instructions, instructions, &stacks);
 	printResult(&stacks);
-	destroy_lists(&stacks, &instructionNames);
+	destroy_lists(&stacks, &required_instructions);
 	return (0);
 }
