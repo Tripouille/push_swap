@@ -69,8 +69,12 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	benchmark_init(benchmark, stacks->a.size);
 	if (!benchmark_launch(instructions, stacks, benchmark))
 		return ;
-	//slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
-	show_instructions_verbose(&get_best_benchmark(benchmark)->required_instructions, instructions, stacks);
+	if (get_option(options, 'v')->active || get_option(options, 'f')->active)
+		show_instructions_verbose(&get_best_benchmark(benchmark)\
+			->required_instructions, instructions, stacks);
+	else
+		slist_show(&get_best_benchmark(benchmark)->required_instructions,
+			'\n');
     if (get_option(options, 'b')->active)
 	    benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
