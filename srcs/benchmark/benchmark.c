@@ -60,7 +60,7 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 }
 
 void	print_best_algo(t_instruction_infos const instructions[],
-						t_stacks const *stacks)
+						t_stacks const *stacks, t_option options[])
 {
 	t_benchmark			benchmark[10];
 
@@ -70,6 +70,7 @@ void	print_best_algo(t_instruction_infos const instructions[],
 	if (!benchmark_launch(instructions, stacks, benchmark))
 		return ;
 	slist_show(&get_best_benchmark(benchmark)->required_instructions, '\n');
-	benchmark_show(benchmark);
+    if (get_option(options, 'b')->active)
+	    benchmark_show(benchmark);
 	benchmark_destroy(benchmark);
 }
