@@ -39,9 +39,9 @@ void	benchmark_show(t_benchmark const benchmark[])
 
 	i = -1;
 	while (benchmark[++i].algo != NULL)
-		dprintf(2, "[%s %lu] ", benchmark[i].name,
+		printf("[%s %lu] ", benchmark[i].name,
 			benchmark[i].required_instructions.size);
-	dprintf(2, "\n");
+	printf("\n");
 }
 
 bool    benchmark_contain(t_benchmark const benchmark[], char const *algo_name)
