@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	initialize(&stacks, &instructionNames, instructions);
-	if (!get_numbers(argv, &stacks.a))
+	if (!get_numbers(argv + 1, &stacks.a))
 	{
 		stacks_destroy(&stacks);
 		errorExit();
