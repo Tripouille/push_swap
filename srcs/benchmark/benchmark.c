@@ -57,7 +57,7 @@ static bool	benchmark_launch(t_instruction_infos const instructions[],
 }
 
 void	print_best_algo(t_instruction_infos const instructions[],
-						t_stacks const *stacks, t_option options[])
+						t_stacks *stacks, t_option options[])
 {
 	t_benchmark			benchmark[10];
     t_option           *a;

@@ -29,3 +29,8 @@ void	ft_strcpy(char *dest, char const *source)
 		dest[i] = source[i];
 	dest[i] = 0;
 }
+
+void	ft_putstr_fd(int fd, char const *s)
+{
+	write(fd, s, ft_strlen(s));
+}
